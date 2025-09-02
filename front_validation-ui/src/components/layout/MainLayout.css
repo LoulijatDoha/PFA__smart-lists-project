@@ -1,0 +1,15 @@
+/* src/components/layout/MainLayout.css */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Prend au minimum toute la hauteur de l'écran */
+}
+
+.main-content {
+  flex-grow: 1; /* Fait en sorte que le contenu principal prenne tout l'espace disponible */
+  padding: 1.5rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}

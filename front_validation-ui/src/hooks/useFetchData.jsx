@@ -1,0 +1,1 @@
+//(Un hook personnalisé pour charger des données depuis l'API)

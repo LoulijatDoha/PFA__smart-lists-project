@@ -1,0 +1,14 @@
+mysql-connector-python
+python-dotenv
+google-api-python-client
+google-auth
+google-cloud-documentai
+requests
+gunicorn
+Flask
+Flask-SQLAlchemy
+PyMySQL
+Flask-Cors
+Flask-Login 
+mysql
+google-auth-oauthlib  

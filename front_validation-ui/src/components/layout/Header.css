@@ -1,0 +1,104 @@
+/* src/components/shared/Header.css */
+
+.app-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 0 2rem;
+  height: 65px; /* Un peu plus d'espace */
+  /* Le positionnement (sticky) est maintenant géré par le layout */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* --- Zone 1 : Identité --- */
+.header-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Enlève le soulignement du lien NavLink */
+}
+
+.header-logo {
+  height: 40px;
+  margin-right: 12px;
+}
+
+.header-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #343a40;
+}
+
+/* --- Zone 2 : Navigation --- */
+.header-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  color: #495057;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f1f3f5;
+  color: #000;
+}
+
+/* Style pour le lien actif */
+.nav-link.active {
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* --- Zone 3 : Utilisateur --- */
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-name {
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.logout-button {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 1rem;
+  }
+  .header-nav, .user-name {
+    display: none;
+  }
+  .header-content {
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,16 @@
+/* src/pages/ValidationPage.css */
+.validation-page-grid {
+  display: grid;
+  /* Crée deux colonnes de taille égale */
+  grid-template-columns: 1fr 1fr; 
+  gap: 2rem; /* Espace entre les colonnes */
+  height: calc(100vh - 100px); /* Hauteur approximative pour remplir l'écran sous le header */
+}
+
+.form-column, .pdf-column {
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow-y: auto; /* Ajoute des barres de défilement si le contenu dépasse */
+}

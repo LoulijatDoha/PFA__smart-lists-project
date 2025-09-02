@@ -1,0 +1,29 @@
+/* src/index.css */
+
+/* --- Police globale pour un look moderne et unifié --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* --- Réinitialisation Globale Agressive --- */
+
+/* Appliquer un modèle de boîte prévisible à tous les éléments */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Annuler toutes les marges et paddings par défaut du navigateur,
+   en s'assurant que l'application prend toute la place disponible. */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f9fa; /* Couleur de fond par défaut pour l'application */
+  -webkit-font-smoothing: antialiased; /* Meilleur rendu des polices sur Webkit */
+  -moz-osx-font-smoothing: grayscale; /* Meilleur rendu des polices sur Firefox */
+}

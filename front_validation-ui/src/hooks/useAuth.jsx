@@ -1,0 +1,1 @@
+//(Pour gérer l'état de l'utilisateur globalement)

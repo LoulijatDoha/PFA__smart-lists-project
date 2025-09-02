@@ -1,0 +1,85 @@
+/* src/features/validation/components/ValidationForm.css */
+
+.validation-form-container {
+  padding: 1rem;
+}
+.form-section {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid #e9ecef;
+}
+.form-section h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+}
+.input-with-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.input-with-action input {
+  flex-grow: 1;
+  width: 100%;
+}
+.input-with-action button {
+  flex-shrink: 0;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.input-with-action button:hover {
+  background-color: #e9ecef;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+.lists-table.editable input {
+  width: 100%;
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.lists-table.editable input:focus {
+  outline: none;
+  border: 1px solid #007bff;
+  background-color: white;
+}
+.lists-table.editable tr:hover {
+  background-color: #f1f3f5;
+}
+.validation-actions {
+  margin-top: 2rem;
+  text-align: right;
+}
+.validate-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -1,0 +1,20 @@
+# Fichiers Python et environnement virtuel
+backend/venv/
+__pycache__/
+*.pyc
+.env
+google-credentials.json
+credentials.json
+token.json
+
+
+# Fichiers de dépendances Node.js (très lourd !)
+frontend/node_modules/
+
+# Fichiers de build du frontend
+frontend/dist/
+frontend/.vite/
+
+# Fichiers système
+.DS_Store
+Thumbs.db

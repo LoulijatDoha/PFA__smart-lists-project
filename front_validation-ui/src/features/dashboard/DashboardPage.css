@@ -1,0 +1,80 @@
+/* src/pages/DashboardPage.css */
+
+.dashboard-page { padding: 1rem; }
+.dashboard-header { margin-bottom: 2rem; }
+.error-banner {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+.stat-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.card.loading { min-height: 100px; }
+.card h3 { font-size: 2.5rem; margin: 0 0 0.5rem 0; }
+.card p { margin: 0; color: #6c757d; }
+.card.a-verifier h3 { color: #fd7e14; }
+.card.valide h3 { color: #28a745; }
+.card.erreur h3 { color: #dc3545; }
+
+.filter-panel {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.filter-panel select, .filter-panel input {
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+.filter-panel input { flex-grow: 1; }
+
+.lists-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.lists-table th, .lists-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+.lists-table th {
+  background-color: #f8f9fa;
+}
+.status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.status-badge.status-TRAITÉ { background-color: #d4edda; color: #155724; }
+.status-badge.status-A_VERIFIER { background-color: #fff3cd; color: #856404; }
+.status-badge.status-ERREUR_OCR, .status-badge.status-ERREUR_VALIDATION { background-color: #f8d7da; color: #721c24; }
+.action-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+}

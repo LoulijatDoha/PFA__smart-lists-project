@@ -1,0 +1,59 @@
+/* Conteneur principal du visualiseur */
+.document-viewer-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* S'assure que le wrapper prend toute la hauteur */
+  background-color: #f0f0f0;
+  border-left: 1px solid #ccc;
+}
+
+/* Barre d'outils avec les boutons de zoom */
+.viewer-toolbar {
+  padding: 8px;
+  background-color: #e9ecef;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  flex-shrink: 0; /* Empêche la barre de se réduire */
+}
+
+.viewer-toolbar button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.viewer-toolbar span {
+  margin-left: 15px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+/* Zone de contenu scrollable pour le document */
+.document-content {
+  overflow: auto; /* Active le défilement */
+  flex-grow: 1;   /* Fait en sorte que cette zone remplisse l'espace restant */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Conteneur pour chaque page (PDF ou image) */
+.page-container {
+  /* --- CORRECTION ESSENTIELLE --- */
+  position: relative; 
+  /* ------------------------------ */
+  margin: 0 auto 15px auto; /* Centre la page et ajoute un espace en dessous */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: inline-block; /* Permet au conteneur de s'adapter à la taille de la page */
+}
+
+/* La boîte de surlignage elle-même */
+.highlight-box {
+  /* --- CORRECTION ESSENTIELLE --- */
+  position: absolute;
+  /* ------------------------------ */
+  background-color: rgba(255, 215, 0, 0.4); /* Jaune/Or semi-transparent */
+  border: 1.5px solid #FFD700;
+  z-index: 100; /* S'assure qu'elle est bien au-dessus de l'image ou du texte PDF */
+  pointer-events: none; /* Permet de ne pas intercepter les clics de la souris */
+  transition: all 0.1s ease-in-out; /* Ajoute une petite transition douce */
+}
