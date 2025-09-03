@@ -1,17 +1,17 @@
 // src/features/validation/components/ValidationForm.jsx
 
 import React, { useState, useEffect } from 'react';
-import toast from 'react-hot-toast'; // On garde l'import de react-hot-toast
-import { validateEntity, updateEntity } from '../../../services/entityService';
+import toast from 'react-hot-toast';
+import { validateEntity, updateEntity, deleteManuel } from '../../../services/entityService';
 import { getAllNiveaux } from '../../../services/niveauService';
 import { updateListNiveau } from '../../../services/listService';
-import { FaSave, FaCheckCircle } from 'react-icons/fa';
+import { FaSave, FaCheckCircle, FaTrash } from 'react-icons/fa';
 import './ValidationForm.css';
 
 const ValidationForm = ({ listData, selectedManuelId, onManuelSelect, onHighlight, onClearHighlight, onDataReload }) => {
   const [formData, setFormData] = useState(listData);
   const [niveauxOptions, setNiveauxOptions] = useState([]);
-  
+
   useEffect(() => {
     setFormData(listData);
     if (niveauxOptions.length === 0) {
@@ -33,39 +33,47 @@ const ValidationForm = ({ listData, selectedManuelId, onManuelSelect, onHighligh
     }
   };
 
-  // Cette fonction reste inchangée pour le moment
   const handleSave = async (entityType, entityId, dataToSave) => {
     try {
       await updateEntity(entityType, entityId, dataToSave);
       toast.success('Modification enregistrée !');
-      onDataReload(); // On garde le rechargement pour l'instant
+      onDataReload();
     } catch (error) {
       toast.error(`Erreur de sauvegarde : ${error.response?.data?.error || error.message}`);
     }
   };
+
+  const handleDeleteManuel = async (manuelId, manuelTitre) => {
+    const confirmMessage = `Êtes-vous sûr de vouloir supprimer le manuel "${manuelTitre}" ?\n\nCette action est irréversible.`;
+    if (!window.confirm(confirmMessage)) return;
+    try {
+      await deleteManuel(manuelId);
+      toast.success('Manuel supprimé avec succès !');
+      // Mise à jour optimiste pour une UI plus réactive
+      setFormData(currentData => ({
+        ...currentData,
+        manuels: currentData.manuels.filter(m => m.id_manuel !== manuelId)
+      }));
+    } catch (error) {
+      toast.error(`Erreur de suppression : ${error.message}`);
+    }
+  };
   
-  // --- C'EST ICI QUE LA MODIFICATION A LIEU ---
   const handleValidate = async (entityType, entityId, entityStatut, entityName = '') => {
-    // On garde la confirmation native pour cette étape
     if (!window.confirm(`Valider : ${entityType} "${entityName}" (ID: ${entityId}) ?`)) return;
-    
     try {
       await validateEntity(entityType, entityId);
       toast.success(`${entityType} validé !`);
       onDataReload();
     } catch (error) {
-      // **LA CORRECTION :** On vérifie le code d'erreur spécifique
-      if (error.response?.status === 409) { // 409 Conflict = "Déjà validé"
-        // On affiche une notification informative, pas une erreur
+      if (error.response?.status === 409) {
         toast(`Cet élément est déjà validé.`, { icon: 'ℹ️' });
       } else {
-        // Pour toutes les autres erreurs, on affiche un message d'erreur générique
         toast.error(`Erreur de validation: ${error.response?.data?.error || error.message}`);
       }
     }
   };
 
-  // Cette fonction reste inchangée
   const handleSaveNiveauCascade = async () => {
     if (!formData.id_liste || !formData.id_niveau) return;
     try {
@@ -82,48 +90,43 @@ const ValidationForm = ({ listData, selectedManuelId, onManuelSelect, onHighligh
       <div className="form-section">
         <h3>Informations Générales</h3>
         <div className="form-grid">
-          <div className="form-group" onMouseOver={() => onHighlight('ecole', formData.id_ecole)} onMouseOut={onClearHighlight}>
+          <div className="form-group">
             <label>École (Statut: {formData.statut_ecole})</label>
             <div className="input-with-action">
-              <input type="text" name="nom_ecole" value={formData.nom_ecole || ''} onChange={handleInputChange} />
+              <input type="text" name="nom_ecole" value={formData.nom_ecole || ''} onChange={handleInputChange} onFocus={() => onHighlight('ecole', formData.id_ecole)} onBlur={onClearHighlight} />
               <button onClick={() => handleSave('ecoles', formData.id_ecole, { nom_ecole: formData.nom_ecole, ville: formData.ville })}><FaSave /></button>
               <button onClick={() => handleValidate('ecoles', formData.id_ecole, formData.statut_ecole, formData.nom_ecole)}><FaCheckCircle /></button>
             </div>
           </div>
-          
-          <div className="form-group" onMouseOver={() => onHighlight('ecole', formData.id_ecole)} onMouseOut={onClearHighlight}>
+          <div className="form-group">
             <label>Ville</label>
-            <input type="text" name="ville" value={formData.ville || ''} onChange={handleInputChange} />
+            <input type="text" name="ville" value={formData.ville || ''} onChange={handleInputChange} onFocus={() => onHighlight('ecole', formData.id_ecole)} onBlur={onClearHighlight} />
           </div>
-
           <div className="form-group">
             <label>Année Scolaire (Statut: {formData.statut_annee})</label>
             <div className="input-with-action">
-              <input type="text" name="annee_scolaire" value={formData.annee_scolaire || ''} onChange={handleInputChange} />
+              <input type="text" name="annee_scolaire" value={formData.annee_scolaire || ''} onChange={handleInputChange} onFocus={() => onHighlight('annee_scolaire', formData.id_annee)} onBlur={onClearHighlight} />
               <button onClick={() => handleSave('annees_scolaires', formData.id_annee, { annee_scolaire: formData.annee_scolaire })}><FaSave /></button>
               <button onClick={() => handleValidate('annees_scolaires', formData.id_annee, formData.statut_annee, formData.annee_scolaire)}><FaCheckCircle /></button>
             </div>
           </div>
-          
-          <div className="form-group" onMouseOver={() => onHighlight('niveau', formData.id_niveau)} onMouseOut={onClearHighlight}>
+          <div className="form-group">
             <label>Correction Nom Niveau (Statut: {formData.statut_niveau})</label>
             <div className="input-with-action">
-              <input type="text" name="nom_niveau" value={formData.nom_niveau || ''} onChange={handleInputChange} />
+              <input type="text" name="nom_niveau" value={formData.nom_niveau || ''} onChange={handleInputChange} onFocus={() => onHighlight('niveau', formData.id_niveau)} onBlur={onClearHighlight} />
               <button onClick={() => handleSave('niveaux', formData.id_niveau, { nom_niveau: formData.nom_niveau })}><FaSave /></button>
               <button onClick={() => handleValidate('niveaux', formData.id_niveau, formData.statut_niveau, formData.nom_niveau)}><FaCheckCircle /></button>
             </div>
           </div>
-
           <div className="form-group">
             <label>Changer le Niveau de la Liste</label>
-             <div className="input-with-action">
+            <div className="input-with-action">
               <select name="id_niveau" value={formData.id_niveau || ''} onChange={handleInputChange}>
                 {niveauxOptions.map(n => <option key={n.id_niveau} value={n.id_niveau}>{n.nom_niveau}</option>)}
               </select>
               <button onClick={handleSaveNiveauCascade} title="Enregistrer et mettre à jour les manuels associés"><FaSave /></button>
             </div>
           </div>
-          
           <div className="form-group">
             <label>Effectif</label>
             <div className="input-with-action">
@@ -133,25 +136,29 @@ const ValidationForm = ({ listData, selectedManuelId, onManuelSelect, onHighligh
           </div>
         </div>
       </div>
-      
       <div className="form-section">
         <h3>Manuels de la Liste</h3>
         <div className="table-wrapper">
           <table className="lists-table editable">
             <thead>
-              <tr><th>Titre</th><th>Type</th><th>Éditeur</th><th>Référence</th><th>Statut</th><th>Actions</th></tr>
+              <tr>
+                <th>Titre</th><th>ISBN</th><th>Éditeur</th><th>Type</th><th>Matière</th><th>Année Édition</th><th>Statut</th><th>Actions</th>
+              </tr>
             </thead>
             <tbody>
               {formData.manuels?.map((manuel, index) => (
-                <tr key={manuel.id_manuel} onClick={() => onManuelSelect(manuel)} className={selectedManuelId === manuel.id_manuel ? 'selected' : ''} onMouseOver={() => onHighlight('manuel', manuel.id_manuel)} onMouseOut={onClearHighlight}>
-                  <td><input type="text" name="titre" value={manuel.titre || ''} onChange={(e) => handleInputChange(e, index)} /></td>
-                  <td><input type="text" name="type" value={manuel.type || ''} onChange={(e) => handleInputChange(e, index)} /></td>
-                  <td><input type="text" name="editeur" value={manuel.editeur || ''} onChange={(e) => handleInputChange(e, index)} /></td>
-                  <td>{manuel.id_article_ref ? `Réf: ${manuel.ref_reference}` : <span className="no-reference">Non Associé</span>}</td>
+                <tr key={manuel.id_manuel} onClick={() => onManuelSelect(manuel)} className={selectedManuelId === manuel.id_manuel ? 'selected' : ''}>
+                  <td><input type="text" name="titre" value={manuel.titre || ''} onChange={(e) => handleInputChange(e, index)} onFocus={() => onHighlight('manuel', manuel.id_manuel)} onBlur={onClearHighlight} /></td>
+                  <td><input type="text" name="isbn" value={manuel.isbn || ''} onChange={(e) => handleInputChange(e, index)} onFocus={() => onHighlight('manuel', manuel.id_manuel)} onBlur={onClearHighlight} /></td>
+                  <td><input type="text" name="editeur" value={manuel.editeur || ''} onChange={(e) => handleInputChange(e, index)} onFocus={() => onHighlight('manuel', manuel.id_manuel)} onBlur={onClearHighlight} /></td>
+                  <td><input type="text" name="type" value={manuel.type || ''} onChange={(e) => handleInputChange(e, index)} onFocus={() => onHighlight('manuel', manuel.id_manuel)} onBlur={onClearHighlight} /></td>
+                  <td><input type="text" name="matiere" value={manuel.matiere || ''} onChange={(e) => handleInputChange(e, index)} onFocus={() => onHighlight('manuel', manuel.id_manuel)} onBlur={onClearHighlight} /></td>
+                  <td><input type="text" name="annee_edition" value={manuel.annee_edition || ''} onChange={(e) => handleInputChange(e, index)} onFocus={() => onHighlight('manuel', manuel.id_manuel)} onBlur={onClearHighlight} /></td>
                   <td><span className={`status-badge status-${manuel.statut}`}>{manuel.statut}</span></td>
                   <td>
-                    <button onClick={(e) => { e.stopPropagation(); handleSave('manuels', manuel.id_manuel, { titre: manuel.titre, type: manuel.type, editeur: manuel.editeur }); }}><FaSave /></button>
+                    <button onClick={(e) => { e.stopPropagation(); handleSave('manuels', manuel.id_manuel, { titre: manuel.titre, isbn: manuel.isbn, editeur: manuel.editeur, type: manuel.type, matiere: manuel.matiere, annee_edition: manuel.annee_edition }); }}><FaSave /></button>
                     <button onClick={(e) => { e.stopPropagation(); handleValidate('manuels', manuel.id_manuel, manuel.statut, manuel.titre); }}><FaCheckCircle /></button>
+                    <button title="Supprimer" className="delete-button" onClick={(e) => { e.stopPropagation(); handleDeleteManuel(manuel.id_manuel, manuel.titre); }}><FaTrash /></button>
                   </td>
                 </tr>
               ))}
@@ -159,14 +166,12 @@ const ValidationForm = ({ listData, selectedManuelId, onManuelSelect, onHighligh
           </table>
         </div>
       </div>
-
       <div className="validation-actions">
-        <button className="validate-button" onClick={() => handleValidate('listes_scolaires', formData.id_liste, formData.statut, formData.nom_niveau)}>
-          Valider Toute la Liste
-        </button>
+        <button className="validate-button" onClick={() => handleValidate('listes_scolaires', formData.id_liste, formData.statut, formData.nom_niveau)}>Valider Toute la Liste</button>
       </div>
     </div>
   );
 };
 
+// La ligne cruciale qui corrige l'erreur de syntaxe
 export default ValidationForm;

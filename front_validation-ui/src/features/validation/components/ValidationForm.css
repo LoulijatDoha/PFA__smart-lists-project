@@ -35,9 +35,13 @@
   align-items: center;
   gap: 0.5rem;
 }
-.input-with-action input {
+.input-with-action input,
+.input-with-action select { /* On applique aussi aux selects */
   flex-grow: 1;
   width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
 }
 .input-with-action button {
   flex-shrink: 0;
@@ -46,13 +50,38 @@
   border: 1px solid #dee2e6;
   cursor: pointer;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .input-with-action button:hover {
   background-color: #e9ecef;
 }
+
+/* --- AMÉLIORATIONS DU TABLEAU --- */
+
 .table-wrapper {
-  overflow-x: auto;
+  overflow-x: auto; /* Permet le scroll horizontal sur les petits écrans */
 }
+
+.lists-table {
+  width: 100%;
+  border-collapse: collapse; /* Belles bordures */
+  table-layout: auto; /* La taille des colonnes s'adapte au contenu */
+}
+
+.lists-table th, .lists-table td {
+  padding: 12px 15px; /* Plus d'espacement */
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.lists-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+}
+
 .lists-table.editable input {
   width: 100%;
   border: 1px solid transparent;
@@ -60,15 +89,42 @@
   padding: 8px;
   border-radius: 4px;
   transition: all 0.2s;
+  font-family: inherit; /* Utilise la même police que le reste */
+  font-size: inherit; /* Utilise la même taille de police */
+  
+  /* --- CORRECTION POUR L'ARABE (RTL) --- */
+  /* S'adapte automatiquement à la direction du texte que vous tapez */
+  direction: auto;
+  text-align: start; /* S'aligne à droite pour RTL, à gauche pour LTR */
 }
 .lists-table.editable input:focus {
   outline: none;
   border: 1px solid #007bff;
   background-color: white;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 .lists-table.editable tr:hover {
   background-color: #f1f3f5;
 }
+.lists-table.editable tr.selected {
+  background-color: #cfe2ff; /* Met en valeur la ligne sélectionnée */
+}
+
+/* Section de recherche de manuel */
+.manuel-search-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+.manuel-search-section h4 {
+  margin-top: 0;
+}
+.search-prompt {
+  font-style: italic;
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
 .validation-actions {
   margin-top: 2rem;
   text-align: right;
@@ -82,4 +138,8 @@
   font-weight: bold;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+.validate-button:hover {
+  background-color: #218838;
 }

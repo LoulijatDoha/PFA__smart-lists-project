@@ -3,24 +3,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
-
-// --- Services ---
 import { getListsByFile } from '../../services/listService';
 import { downloadFileAsBlob } from '../../services/driveService';
 import { updateEntity } from '../../services/entityService';
-
-// --- Composants ---
 import DocumentViewer from './components/DocumentViewer';
 import ValidationForm from './components/ValidationForm';
 import ReferentielSearchBar from './components/ReferentielSearchBar';
-
-// --- Styles ---
 import './ValidationPage.css';
 
 const ValidationPage = () => {
   const { sourceFileId } = useParams();
   
-  // --- États ---
   const [dossierData, setDossierData] = useState(null);
   const [selectedListIndex, setSelectedListIndex] = useState(0);
   const [selectedManuel, setSelectedManuel] = useState(null);
@@ -29,7 +22,6 @@ const ValidationPage = () => {
   const [error, setError] = useState('');
   const [currentHighlight, setCurrentHighlight] = useState(null);
 
-  // --- Fonctions de récupération de données ---
   const fetchData = useCallback(async () => {
     if (!sourceFileId) {
       setError("ID de fichier manquant.");
@@ -44,7 +36,6 @@ const ValidationPage = () => {
         throw new Error("Aucune liste n'a été trouvée pour ce fichier.");
       }
       setDossierData(response.data);
-      
       const blob = await downloadFileAsBlob(sourceFileId);
       setFileBlob(blob);
     } catch (err) {
@@ -57,47 +48,42 @@ const ValidationPage = () => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-  
-  // --- Gestionnaires d'événements ---
+
+  // Logique de surlignage simplifiée et directe
   const handleHighlight = useCallback((entityType, entityId) => {
-    if (!entityType || !entityId || !dossierData?.locations) {
+    if (!dossierData?.locations) {
       setCurrentHighlight(null);
       return;
     }
     const locationKey = `${entityType}_${entityId}`;
-    setCurrentHighlight(dossierData.locations[locationKey] || null);
+    const locationData = dossierData.locations[locationKey];
+    setCurrentHighlight(locationData || null);
   }, [dossierData]);
 
   const clearHighlight = useCallback(() => setCurrentHighlight(null), []);
 
   const handleManuelSelect = (manuel) => {
-    // Si on clique sur le même manuel, on le désélectionne, sinon on le sélectionne
     setSelectedManuel(prev => (prev?.id_manuel === manuel.id_manuel ? null : manuel));
   };
   
-const handleArticleLink = async (selectedArticle) => {
+  const handleArticleLink = async (selectedArticle) => {
     if (!selectedManuel) return;
     try {
       await updateEntity('manuels', selectedManuel.id_manuel, { id_article_ref: selectedArticle.id_article });
-      // --- MODIFICATION 2: Remplacer alert par toast.success ---
       toast.success('Association de la référence réussie !');
       fetchData();
     } catch (error) {
-      // --- MODIFICATION 3: Remplacer alert par toast.error ---
       toast.error(`Erreur lors de l'association de la référence.`);
     } finally {
       setSelectedManuel(null);
     }
   };
   
-  // --- Rendu ---
   if (loading) return <div>Chargement du dossier de validation...</div>;
   if (error) return <div className="error-banner">{error}</div>;
   
   const currentListData = dossierData?.lists?.[selectedListIndex];
   if (!currentListData) return <div className="error-banner">Aucune liste à afficher pour ce dossier.</div>;
-  
-  const fileType = currentListData.mime_type;
 
   return (
     <div className="validation-page-grid">
@@ -107,7 +93,12 @@ const handleArticleLink = async (selectedArticle) => {
           {dossierData.lists.map((list, index) => (
             <button 
               key={list.id_liste} 
-              onClick={() => { setSelectedListIndex(index); setSelectedManuel(null); }}
+              onClick={() => { 
+                setSelectedListIndex(index); 
+                setSelectedManuel(null); 
+                // Correction de bug : on efface le surlignage en changeant d'onglet
+                setCurrentHighlight(null); 
+              }}
               className={`tab-button ${index === selectedListIndex ? 'active' : ''}`}
             >
               {list.nom_niveau} {list.statut === 'VALIDÉ' && '✅'}
@@ -116,7 +107,7 @@ const handleArticleLink = async (selectedArticle) => {
         </div>
         
         <ValidationForm 
-          key={currentListData.id_liste} // La clé force le re-montage du composant si la liste change
+          key={currentListData.id_liste}
           listData={currentListData}
           selectedManuelId={selectedManuel?.id_manuel}
           onManuelSelect={handleManuelSelect}
@@ -127,7 +118,6 @@ const handleArticleLink = async (selectedArticle) => {
       </div>
       
       <div className="pdf-column">
-        {/* --- MODIFICATION : Barre de recherche déplacée ici --- */}
         <div className="form-section" style={{ marginBottom: '1rem', backgroundColor: '#fff', padding: '1rem', borderRadius: '8px', border: '1px solid #e9ecef' }}>
           <h3>Associer une Référence au Manuel Sélectionné</h3>
           <ReferentielSearchBar 
@@ -140,7 +130,7 @@ const handleArticleLink = async (selectedArticle) => {
         
         <DocumentViewer 
           fileBlob={fileBlob} 
-          fileType={fileType} 
+          fileType={currentListData.mime_type} 
           highlight={currentHighlight}
         />
       </div>

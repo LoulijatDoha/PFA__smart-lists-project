@@ -1,14 +1,21 @@
 mysql-connector-python
+mysql
+# requirements.txt
+
+# --- Framework et extensions ---
+Flask
+Flask-SQLAlchemy         # <-- Indispensable pour l'ORM
+PyMySQL                  # <-- Le meilleur driver pour SQLAlchemy avec MySQL
+Flask-Cors
+Flask-Login
+werkzeug                 # Utilisé pour les hash de mots de passe
+
+# --- Bibliothèques Google & API ---
 python-dotenv
 google-api-python-client
 google-auth
 google-cloud-documentai
+google-auth-oauthlib
 requests
 gunicorn
-Flask
-Flask-SQLAlchemy
-PyMySQL
-Flask-Cors
-Flask-Login 
-mysql
-google-auth-oauthlib  
+
