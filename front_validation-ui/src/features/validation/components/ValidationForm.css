@@ -1,145 +1,78 @@
 /* src/features/validation/components/ValidationForm.css */
 
-.validation-form-container {
-  padding: 1rem;
-}
+.validation-form-container { display: flex; flex-direction: column; gap: 1.5rem; }
 .form-section {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  border: 1px solid #e9ecef;
+  background-color: #ffffff; padding: 1.5rem; border-radius: 12px;
+  border: 1px solid #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 .form-section h3 {
-  margin-top: 0;
-  border-bottom: 1px solid #dee2e6;
-  padding-bottom: 0.8rem;
-  margin-bottom: 1.5rem;
+  margin-top: 0; border-bottom: 1px solid #dee2e6; padding-bottom: 1rem;
+  margin-bottom: 1.5rem; font-size: 1.2rem; color: #343a40;
 }
+.list-tabs h3 {
+  font-size: 1rem; text-transform: uppercase; color: #6c757d;
+  letter-spacing: 0.5px; border-bottom: none; padding-bottom: 0;
+}
+.tab-buttons-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tab-button {
+  padding: 0.5rem 1rem; border: 1px solid #ced4da; background-color: #f8f9fa;
+  border-radius: 20px; cursor: pointer; transition: all 0.2s; font-weight: 500;
+}
+.tab-button.active { background-color: #2c5530; color: white; border-color: #2c5530; }
 .form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;
 }
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-.form-group label {
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #495057;
-}
-.input-with-action {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.input-with-action input,
-.input-with-action select { /* On applique aussi aux selects */
-  flex-grow: 1;
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
+.form-group { display: flex; flex-direction: column; }
+.form-group label { margin-bottom: 0.5rem; font-weight: 500; color: #495057; font-size: 0.9rem; }
+.input-with-action { display: flex; align-items: center; gap: 0.5rem; }
+.input-with-action input, .input-with-action select {
+  flex-grow: 1; width: 100%; padding: 0.6rem 0.8rem;
+  border: 1px solid #ced4da; border-radius: 6px; font-size: 0.95rem; background-color: #f8f9fa;
 }
 .input-with-action button {
-  flex-shrink: 0;
-  padding: 0.5rem;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  cursor: pointer;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-shrink: 0; width: 38px; height: 38px; background-color: #f1f3f5;
+  border: 1px solid #dee2e6; cursor: pointer; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; color: #495057;
 }
-.input-with-action button:hover {
-  background-color: #e9ecef;
-}
-
-/* --- AMÉLIORATIONS DU TABLEAU --- */
-
-.table-wrapper {
-  overflow-x: auto; /* Permet le scroll horizontal sur les petits écrans */
-}
-
-.lists-table {
-  width: 100%;
-  border-collapse: collapse; /* Belles bordures */
-  table-layout: auto; /* La taille des colonnes s'adapte au contenu */
-}
-
+.input-with-action button:hover { background-color: #e9ecef; }
+.table-wrapper { overflow-x: auto; } /* Cette ligne est cruciale */
+.lists-table { width: 100%; border-collapse: collapse; }
 .lists-table th, .lists-table td {
-  padding: 12px 15px; /* Plus d'espacement */
-  text-align: left;
-  border-bottom: 1px solid #dee2e6;
+  padding: 0.25rem; text-align: left; border-bottom: 1px solid #f0f0f0; vertical-align: middle;
 }
-
+.lists-table tr:last-child td { border-bottom: none; }
 .lists-table th {
-  background-color: #f8f9fa;
-  font-weight: 600;
-  color: #495057;
+  padding: 0.75rem 0.5rem; background-color: #f8f9fa; font-weight: 600; color: #888;
+  font-size: 0.75rem; text-transform: uppercase; white-space: nowrap; /* Empêche le retour à la ligne des titres */
 }
-
 .lists-table.editable input {
-  width: 100%;
-  border: 1px solid transparent;
-  background-color: transparent;
-  padding: 8px;
-  border-radius: 4px;
-  transition: all 0.2s;
-  font-family: inherit; /* Utilise la même police que le reste */
-  font-size: inherit; /* Utilise la même taille de police */
-  
-  /* --- CORRECTION POUR L'ARABE (RTL) --- */
-  /* S'adapte automatiquement à la direction du texte que vous tapez */
-  direction: auto;
-  text-align: start; /* S'aligne à droite pour RTL, à gauche pour LTR */
+  width: 100%; padding: 8px 10px; border-radius: 6px; font-family: inherit;
+  font-size: inherit; transition: all 0.2s; background-color: #f8f9fa;
+  border: 1px solid transparent; direction: auto; text-align: start; box-sizing: border-box;
 }
+.lists-table.editable tr:hover input { border-color: #ced4da; }
 .lists-table.editable input:focus {
-  outline: none;
-  border: 1px solid #007bff;
-  background-color: white;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  outline: none; background-color: #ffffff; border-color: #2c5530;
+  box-shadow: 0 0 0 3px rgba(44, 85, 48, 0.15);
 }
-.lists-table.editable tr:hover {
-  background-color: #f1f3f5;
+.lists-table.editable tr.selected { background-color: #e6f7ff; }
+.status-badge {
+  padding: 0.3rem 0.7rem; border-radius: 12px; font-size: 0.8rem;
+  font-weight: 500; display: inline-block; white-space: nowrap;
 }
-.lists-table.editable tr.selected {
-  background-color: #cfe2ff; /* Met en valeur la ligne sélectionnée */
+.status-VALIDÉ { background-color: #d4edda; color: #155724; }
+.status-À_VÉRIFIER { background-color: #fff3cd; color: #856404; }
+.actions-cell { display: flex; gap: 0.5rem; align-items: center;}
+.actions-cell button {
+  background-color: #f1f3f5; border: 1px solid #dee2e6; width: 36px;
+  height: 36px; border-radius: 6px; display: flex;
+  justify-content: center; align-items: center; cursor: pointer; color: #495057;
 }
-
-/* Section de recherche de manuel */
-.manuel-search-section {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e9ecef;
-}
-.manuel-search-section h4 {
-  margin-top: 0;
-}
-.search-prompt {
-  font-style: italic;
-  color: #6c757d;
-  font-size: 0.9em;
-}
-
-.validation-actions {
-  margin-top: 2rem;
-  text-align: right;
-}
+.delete-button { background-color: #f8d7da !important; color: #721c24 !important; border-color: #f5c6cb !important; }
+.validation-actions { text-align: right; }
 .validate-button {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  background-color: #28a745; color: white; border: none; padding: 0.8rem 1.5rem;
+  font-size: 1rem; font-weight: bold; border-radius: 8px;
+  cursor: pointer; transition: background-color 0.2s;
 }
-.validate-button:hover {
-  background-color: #218838;
-}
+.validate-button:hover { background-color: #218838; }

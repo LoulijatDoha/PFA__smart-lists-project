@@ -2,6 +2,7 @@
 import React from 'react';
 // Assurez-vous que le chemin vers votre service est correct
 import { reprocessFile } from '../../../services/fileService'; 
+import './ErrorFilesTable.css'; 
 
 const ErrorFilesTable = ({ files, loading, onReprocessSuccess }) => {
 

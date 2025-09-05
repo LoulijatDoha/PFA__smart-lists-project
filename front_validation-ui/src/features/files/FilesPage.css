@@ -1,0 +1,164 @@
+/* src/features/files/FilesPage.css */
+
+.page-header {
+  margin-bottom: 2rem;
+}
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #343a40;
+}
+.page-header p {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.panel-container {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid #e9ecef;
+}
+
+.filter-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.filter-group input, .filter-group select {
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+/* --- CORRECTION DE LA RESPONSIVITÉ --- */
+.table-container-files {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  
+  /* C'est la ligne la plus importante : elle active le défilement horizontal */
+  overflow-x: auto; 
+}
+
+.files-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* On s'assure que le tableau ne devient pas plus petit que son contenu */
+  min-width: 800px; 
+}
+
+.files-table th, .files-table td {
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  white-space: nowrap; /* Empêche le texte de passer à la ligne, ce qui est mieux pour un tableau */
+}
+
+.files-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.files-table tr:last-child td {
+  border-bottom: none;
+}
+
+.files-table tr:hover {
+  background-color: #fafcff;
+}
+
+.text-secondary {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+}
+
+/* Amélioration pour la gestion des noms de fichiers longs */
+.file-name-details {
+  display: flex;
+  flex-direction: column;
+  /* Permet au nom de fichier de passer à la ligne s'il est très long */
+  white-space: normal; 
+}
+
+.file-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.file-icon.pdf { color: #e74c3c; }
+.file-icon.image { color: #3498db; }
+
+.progression-cell {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.progression-cell span:first-child {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.progression-cell .progress-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.progress-complete { color: #28a745; }
+.progress-incomplete { color: #fd7e14; }
+
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2c5530;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 90px;
+}
+
+.action-button:hover {
+  background-color: #1e3b21;
+}
+
+.loading-state, .empty-state {
+    padding: 4rem;
+    text-align: center;
+    color: #6c757d;
+    font-size: 1.1rem;
+}

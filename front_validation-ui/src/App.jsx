@@ -1,18 +1,28 @@
 // src/App.jsx
 
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+// --- LA CORRECTION EST ICI ---
+import { Routes, Route, Navigate } from 'react-router-dom'; 
 import { useAuth } from './context/AuthContext';
 
+// Layouts - chemins vérifiés selon votre arborescence
 import MainLayout from './components/layout/MainLayout';
+import AdminLayout from './components/layout/AdminLayout';
+
+// Route Protégée
 import ProtectedRoute from './components/shared/ProtectedRoute';
 
+// Pages - chemins vérifiés selon votre arborescence
 import LoginPage from './features/authentication/LoginPage';
 import DashboardPage from './features/dashboard/DashboardPage';
-import UserAdminPage from './features/users/UserAdminPage';
 import ValidationPage from './features/validation/ValidationPage';
-import NotFoundPage from './components/shared/NotFoundPage';
+import UserAdminPage from './features/users/UserAdminPage';
+import StandardisationAdminPage from './features/standardisation/StandardisationAdminPage'; // Renommé le dossier "pages" -> "features"
+import FilesPage from './features/files/FilesPage'; // Renommé le dossier "pages" -> "features"
+import ChangePasswordPage from './features/authentication/ChangePasswordPage'; // Nouvelle page
 
+// Autres
+import NotFoundPage from './components/shared/NotFoundPage';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
@@ -22,45 +32,34 @@ const App = () => {
     return <div>Chargement de l'application...</div>;
   }
   
-  // --- MODIFICATION 1: Utiliser un Fragment React pour avoir plusieurs éléments au premier niveau ---
   return (
     <> 
-      {/* --- MODIFICATION 2: Toaster déplacé ici, à l'extérieur des Routes --- */}
-      {/* Il sera maintenant toujours présent, peu importe la page affichée. */}
       <Toaster 
         position="top-right" 
         toastOptions={{
           duration: 4000,
-          style: {
-            background: '#363636',
-            color: '#fff',
-          },
-          success: {
-            duration: 3000,
-          },
-          error: {
-            duration: 5000,
-          }
+          style: { background: '#363636', color: '#fff' },
         }}
       />
 
-      {/* Votre logique de routage reste inchangée */}
       <Routes>
         <Route path="/login" element={<LoginPage />} />
 
-        {/* Routes protégées */}
+        <Route path="/change-password" element={<ChangePasswordPage />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
-            <Route path="/" element={<DashboardPage />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/files" element={<FilesPage />} />
             <Route path="/validate/:sourceFileId" element={<ValidationPage />} />
           </Route>
         </Route>
 
-        {/* Routes Admin */}
-        <Route element={<ProtectedRoute adminOnly={true} />}>
-          <Route element={<MainLayout />}>
-             <Route path="/admin/users" element={<UserAdminPage />} />
+        <Route path="/admin" element={<ProtectedRoute adminOnly={true} />}>
+          <Route element={<AdminLayout />}>
+            <Route index element={<Navigate to="/admin/users" replace />} /> 
+            <Route path="users" element={<UserAdminPage />} />
+            <Route path="standardisation" element={<StandardisationAdminPage />} />
           </Route>
         </Route>
 

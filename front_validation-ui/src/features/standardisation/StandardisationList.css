@@ -1,0 +1,83 @@
+/* src/features/standardisation/StandardisationList.css */
+
+.table-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.std-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.std-table th, .std-table td {
+  padding: 1rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.std-table tr:last-child td {
+  border-bottom: none;
+}
+
+.std-table th {
+  font-weight: 500;
+  color: #888;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge {
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.status-badge.status-VALIDÉ, .status-badge.status-AUTO_APPROUVÉ {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.status-À_VÉRIFIER {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  background-color: transparent;
+  border: 1px solid #dee2e6;
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  color: #495057;
+}
+
+.action-button.edit:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.action-button.delete:hover {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}

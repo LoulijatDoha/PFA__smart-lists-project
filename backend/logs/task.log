@@ -1,0 +1,32 @@
+Lancement du script le 04/09/2025 à 12:35:44,32... 
+--- D�BUT DU WORKFLOW ---
+!!! MODE PRODUCTION ACTIV� (�criture en BDD) !!!
+
+[�tape 1] Authentification et initialisation...
+Authentification Google Drive r�ussie.
+Connexion � la base de donn�es r�ussie.
+
+[�tape 2] R�cup�ration et filtrage des fichiers...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> D�couverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[�tape 3] Lancement du traitement pour 1 nouveau(x) fichier(s)...
+
+--- Traitement du fichier: maarif Sal�.pdf ---
+  -> Lancement de l'OCR pour maarif Sal�.pdf...
+  -> ERREUR lors du traitement Document AI: 400 Document pages in non-imageless mode exceed the limit: 15 got 17. Try using imageless mode to increase the limit to 30. [reason: "PAGE_LIMIT_EXCEEDED"
+domain: "documentai.googleapis.com"
+metadata {
+  key: "pages"
+  value: "17"
+}
+metadata {
+  key: "page_limit"
+  value: "30"
+}
+]
+
+Connexion BDD ferm�e.
+--- FIN DU WORKFLOW ---
+

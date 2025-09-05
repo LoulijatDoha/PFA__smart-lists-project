@@ -38,10 +38,18 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const value = { user, isLoading, login, logout };
+  const refreshUser = () => {
+    if (user) {
+        setUser(prevUser => ({...prevUser, must_change_password: false}));
+    }
+  }
+
+  const value = { user, isLoading, login, logout, refreshUser };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
+
 
 // Hook personnalisé pour accéder facilement au contexte
 export const useAuth = () => {

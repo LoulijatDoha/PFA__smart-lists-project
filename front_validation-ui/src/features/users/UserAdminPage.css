@@ -1,0 +1,95 @@
+/* src/features/users/UserAdminPage.css */
+
+/* --- Conteneur principal de la page --- */
+.admin-content-page {
+  /* Animation d'apparition douce pour la page */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* --- En-tête de la page (Titre + Bouton d'ajout) --- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e9ecef; /* Ligne de séparation subtile */
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #343a40;
+}
+
+/* --- Bouton "Ajouter un Utilisateur" --- */
+.add-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2c5530; /* Vert foncé, couleur primaire */
+  color: white;
+  border: none;
+  padding: 0.7rem 1.3rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.add-button:hover {
+  background-color: #1e3b21; /* Vert plus foncé au survol */
+  box-shadow: 0 4px 12px rgba(44, 85, 48, 0.2);
+  transform: translateY(-2px);
+}
+
+/* --- Conteneur pour les cartes de statistiques --- */
+.stat-card-container {
+  display: grid;
+  /* Crée une grille responsive qui s'adapte à la taille de l'écran */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* --- Style des cartes de statistiques individuelles --- */
+.stat-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px; /* Bords plus arrondis */
+  border: 1px solid #e9ecef;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card h3 {
+  font-size: 2.8rem;
+  margin: 0 0 0.5rem 0;
+  color: #2c5530; /* Vert foncé pour le chiffre */
+}
+
+.stat-card p {
+  margin: 0;
+  color: #6c757d; /* Gris pour le texte descriptif */
+  font-weight: 500;
+}
+
+/* --- Animation d'apparition --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

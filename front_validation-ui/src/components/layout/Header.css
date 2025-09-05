@@ -1,11 +1,21 @@
 /* src/components/shared/Header.css */
+:root {
+  /* --- NOUVELLE PALETTE DE COULEURS --- */
+  --header-bg: #2c5530;          /* Vert principal */
+  --header-text: #f8f9fa;       /* Texte blanc cassé */
+  --header-accent: #4a7c59;      /* Vert plus clair pour les accents */
+  --header-border: #1e3b21;       /* Vert très foncé pour la bordure */
+  --header-height: 70px;
+}
 
 .app-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e9ecef;
+  background-color: var(--header-bg);
+  height: var(--header-height);
   padding: 0 2rem;
-  height: 65px; /* Un peu plus d'espace */
-  /* Le positionnement (sticky) est maintenant géré par le layout */
+  border-bottom: 1px solid var(--header-border);
+  color: var(--header-text);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header-content {
@@ -13,92 +23,133 @@
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
-/* --- Zone 1 : Identité --- */
+/* --- Zone Gauche : Logo --- */
 .header-brand {
   display: flex;
   align-items: center;
-  text-decoration: none; /* Enlève le soulignement du lien NavLink */
+  text-decoration: none;
+  color: var(--header-text);
 }
 
 .header-logo {
-  height: 40px;
-  margin-right: 12px;
+  height: 45px;
+  margin-right: 1rem;
+  filter: brightness(0) invert(1);
 }
 
 .header-title {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  color: #343a40;
+  letter-spacing: 0.5px;
 }
 
-/* --- Zone 2 : Navigation --- */
+/* --- Zone Centre : Navigation --- */
 .header-nav {
   display: flex;
-  gap: 1rem;
-}
-
-.nav-link {
-  padding: 0.5rem 1rem;
-  color: #495057;
-  text-decoration: none;
-  font-weight: 500;
-  border-radius: 6px;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.nav-link:hover {
-  background-color: #f1f3f5;
-  color: #000;
-}
-
-/* Style pour le lien actif */
-.nav-link.active {
-  background-color: #5cb85c;
-  color: white;
-}
-
-/* --- Zone 3 : Utilisateur --- */
-.header-user {
-  display: flex;
-  align-items: center;
   gap: 1.5rem;
 }
 
-.user-name {
-  color: #6c757d;
-  font-size: 0.9rem;
+.nav-link {
+  padding: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1rem;
   font-weight: 500;
+  position: relative;
+  transition: color 0.2s ease-in-out;
 }
 
-.logout-button {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  color: #495057;
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--header-accent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link.active {
+  color: #ffffff;
+}
+
+/* --- Zone Droite : Menu Utilisateur --- */
+.header-user-menu {
+  position: relative;
+}
+
+.user-menu-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--header-text);
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 50px;
   cursor: pointer;
+  font-size: 0.9rem;
   font-weight: 500;
   transition: background-color 0.2s, border-color 0.2s;
 }
 
-.logout-button:hover {
-  background-color: #e9ecef;
-  border-color: #ced4da;
+.user-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-  .app-header {
-    padding: 0 1rem;
-  }
-  .header-nav, .user-name {
-    display: none;
-  }
-  .header-content {
-    justify-content: space-between;
-  }
+.user-icon {
+  font-size: 1.2rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+  width: 200px;
+  padding: 0.5rem;
+  z-index: 1000;
+  border: 1px solid #e9ecef;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #343a40;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-radius: 4px;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f3f5;
+}
+
+.dropdown-item.logout {
+  color: #dc3545;
 }

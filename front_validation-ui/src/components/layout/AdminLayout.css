@@ -1,0 +1,80 @@
+/* src/components/layout/AdminLayout.css */
+
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Fond général pour la page */
+}
+
+.admin-container {
+  display: flex;
+  flex-grow: 1; /* Permet au conteneur de remplir l'espace vertical disponible */
+  max-width: 1600px; /* Largeur maximale pour les grands écrans */
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* --- Barre latérale de navigation --- */
+.admin-sidebar {
+  flex: 0 0 240px; /* Largeur fixe pour la barre latérale, ne grandit pas, ne rétrécit pas */
+  background-color: #ffffff;
+  border-right: 1px solid #e9ecef;
+  padding: 2rem 1rem;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Espace entre les liens */
+}
+
+.admin-nav-link {
+  display: block;
+  padding: 0.8rem 1.25rem;
+  color: #495057;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px; /* Bords arrondis */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.admin-nav-link:hover {
+  background-color: #f1f3f5;
+  color: #212529;
+}
+
+/* Style du lien actif (quand on est sur la page correspondante) */
+.admin-nav-link.active {
+  background-color: #4a7c59; /* Vert foncé, cohérent avec le header */
+  color: white;
+  font-weight: bold;
+}
+
+/* --- Contenu principal de la page d'administration --- */
+.admin-content {
+  flex-grow: 1; /* Le contenu prend tout l'espace restant */
+  padding: 2rem;
+  /* overflow-y: auto; Si jamais le contenu est très long */
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    flex-basis: auto; /* La barre latérale prend la hauteur nécessaire */
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem;
+  }
+
+  .admin-nav {
+    flex-direction: row; /* Les liens sont côte à côte sur mobile */
+    justify-content: center;
+    flex-wrap: wrap; /* Passe à la ligne si pas assez de place */
+  }
+}

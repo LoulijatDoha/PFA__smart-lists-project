@@ -62,3 +62,10 @@ if not (DOCAI_PROJECT_ID):
 # Seuil de confiance pour la recherche sémantique des manuels.
 # Seules les suggestions de l'IA avec un score supérieur seront acceptées.
 SEUIL_DE_CONFIANCE = 0.85
+
+
+
+# ----------------
+SECRET_KEY = os.getenv('SECRET_KEY', 'une-cle-par-defaut-pour-le-developpement')
+if SECRET_KEY == 'une-cle-par-defaut-pour-le-developpement':
+    print("AVERTISSEMENT : La SECRET_KEY n'est pas définie dans les variables d'environnement. Utilisation d'une clé de développement non sécurisée.")

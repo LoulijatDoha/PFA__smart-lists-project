@@ -18,7 +18,6 @@ def clean_niveau_brut(text: str) -> str:
     return re.sub(r'[\s:-]+', ' ', text).strip()
 
 def call_gemini(instructions, text_to_analyze, model="gemini-1.5-pro", retries=3, delay=5):
-    # ... (fonction call_gemini, inchangée)
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_API_KEY}"
     payload = {"contents": [{"parts": [{"text": f"{instructions}\n\n--- TEXTE À ANALYSER ---\n\n{text_to_analyze}"}]}], "generationConfig": {"responseMimeType": "application/json"}}
     for attempt in range(retries):
@@ -63,29 +62,70 @@ year_prompt_instructions = """Trouve l'année scolaire (format AAAA/BBBB). FORMA
 intelligent_standardize_prompt_constrained = """MISSION: Pour un NOUVEAU TERME BRUT, trouve la meilleure correspondance dans la LISTE DE CHOIX AUTORISÉS, en t'aidant de la BASE DE CONNAISSANCES. Ta réponse DOIT être une des valeurs exactes de la LISTE. FORMAT: {"nom_standardise": "CHOIX_EXACT"} ou {"nom_standardise": null}"""
 
 # ---  ---
-extract_levels_and_books_prompt = """Tu es un expert en analyse de listes de fournitures scolaires.
-MISSION : Analyser le document complet pour en extraire TOUS les niveaux scolaires et les manuels associés.
+extract_levels_and_books_prompt = """Tu es un expert en analyse de listes de fournitures scolaires, spécialisé dans l'extraction de données structurées.
+MISSION : Analyser le document complet pour extraire de manière exhaustive et structurée TOUS les niveaux scolaires et les détails précis de chaque manuel.
 
 PROCESSUS DE RAISONNEMENT :
 1.  **SEGMENTATION** : Lis le document entier pour identifier les sections. Chaque section commence par un TITRE DE NIVEAU (ex: "1ère année primaire", "TRONC COMMUN"). Les noms de matières (`Français`) ne sont PAS des titres de niveau.
-2.  **EXTRACTION PAR SECTION** : Pour chaque section que tu as identifiée, extrais la liste des livres, manuels, et cahiers d'activités avec un titre PRÉCIS. IGNORE les fournitures et les titres vagues ("un roman au choix"). Pour chaque livre, essaie de trouver la `maison_edition` et la `matiere` en regardant sur la même ligne ou les lignes adjacentes.
-3.  **GESTION DES DOCUMENTS SIMPLES** : Si tu ne trouves qu'un seul titre de niveau dans tout le document, alors tous les livres du document appartiennent à ce niveau.
+
+2.  **EXTRACTION PAR SECTION** : Pour chaque section de niveau que tu as identifiée, parcours-la ligne par ligne pour extraire chaque livre, manuel, ou cahier. Pour chaque élément trouvé, applique rigoureusement la checklist ci-dessous. IGNORE les fournitures générales (stylos, cahiers vierges) et les titres vagues ("un roman au choix").
+
+    **2.1. CHECKLIST D'EXTRACTION POUR CHAQUE LIVRE :**
+    -   `matiere_livre`: Identifier la matière pour CHAQUE livre (Français, Anglais, Maths, التربية الإسلامية, اللغة العربية). Si non spécifiée, déduis-la du titre ou du contexte de la section.
+    -   `titre_livre`: Le titre complet et propre. **Exemple arabe :** pour "الممتاز في التربية الإسلامية ( كتاب التلميذ )", le titre est "الممتاز في التربية الإسلامية". Retire les mentions comme "(livre de l'élève)", "édition 2021", "طبعة جديدة", etc. du titre.
+    -   `maison_edition`: L'éditeur (ex: "Istra", "Hachette", "المعارف الجديدة"). Si absente, retourne `null`.
+    -   `annee_edition`: L'année d'édition de 4 chiffres si tu la trouves (ex: "édition 2021" -> 2021, "طبعة 2022" -> 2022). Si absente, retourne `null`.
+    -   `code_livre`: L'ISBN de 10 ou 13 chiffres si présent. Sinon, retourne `null`.
+    -   `type_livre`: Déduis le type à partir de mots-clés : "Manuel", "Cahier d'activités", "Cahier de travaux pratiques", "Fichier", "Roman", "Dictionnaire". Si aucun mot-clé n'est présent, considère-le comme "Manuel".
+
+3.  **GESTION DES DOCUMENTS SIMPLES** : Si tu ne trouves qu'un seul titre de niveau dans tout le document, alors tous les livres du document appartiennent à ce niveau unique.
 
 RÈGLES DE SORTIE :
--   Le format de sortie DOIT être un JSON contenant une clé unique "niveaux".
+-   Le format de sortie DOIT être un JSON valide contenant une clé unique "niveaux".
 -   "niveaux" doit être une LISTE d'objets.
 -   Chaque objet de la liste représente un niveau et doit contenir : `niveau_brut`, `niveau_source_tags`, et une liste `manuels`.
--   Chaque livre dans `manuels` doit avoir un `titre_livre` non nul et toutes les clés (`maison_edition`, `matiere`, etc.).
+-   Chaque livre dans `manuels` doit contenir TOUTES les clés suivantes : `titre_livre` (qui ne doit pas être nul), `matiere_livre`, `maison_edition`, `annee_edition`, `code_livre`, `type_livre`, et `source_tags`.
 
-EXEMPLE DE SORTIE:
+EXEMPLE DE SORTIE MIS À JOUR:
 {
   "niveaux": [
     {
       "niveau_brut": "3e année primaire",
       "niveau_source_tags": ["E5"],
       "manuels": [
-        {"titre_livre": "Mot de passe", "maison_edition": "Hachette", "matiere": "Français", "source_tags": ["E..."]},
-        {"titre_livre": "Graphilettre CE2-CM1-CM2", "maison_edition": "Magnard", "matiere": "Français", "source_tags": ["E..."]}
+        {
+          "titre_livre": "Mot de passe",
+          "matiere_livre": "Français",
+          "maison_edition": "Hachette",
+          "annee_edition": 2021,
+          "code_livre": "9782017135111",
+          "type_livre": "Manuel",
+          "source_tags": ["E..."]
+        },
+        {
+          "titre_livre": "Mes apprentissages en français",
+          "matiere_livre": "Français",
+          "maison_edition": null,
+          "annee_edition": null,
+          "code_livre": null,
+          "type_livre": "Cahier d'activités",
+          "source_tags": ["E..."]
+        }
+      ]
+    },
+    {
+      "niveau_brut": "الجدع المشترك علمي",
+      "niveau_source_tags": ["E25"],
+      "manuels": [
+        {
+          "titre_livre": "الممتاز في التربية الإسلامية",
+          "matiere_livre": "التربية الإسلامية",
+          "maison_edition": "دار الثقافة",
+          "annee_edition": 2022,
+          "code_livre": null,
+          "type_livre": "Manuel",
+          "source_tags": ["E..."]
+        }
       ]
     }
   ]

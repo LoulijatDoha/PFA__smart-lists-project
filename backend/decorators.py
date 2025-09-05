@@ -10,7 +10,13 @@ def admin_required(f):
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if not current_user.is_authenticated or current_user.role != 'admin':
-            return jsonify({"success": False, "message": "Accès non autorisé. Privilèges administrateur requis."}), 403
+        # On vérifie d'abord que l'utilisateur est bien authentifié
+        if not current_user.is_authenticated:
+            return jsonify({"message": "Authentification requise."}), 401
+        
+        # Ensuite, on vérifie son rôle
+        if current_user.role != 'admin':
+            return jsonify({"message": "Accès non autorisé. Privilèges administrateur requis."}), 403
+        
         return f(*args, **kwargs)
     return decorated_function

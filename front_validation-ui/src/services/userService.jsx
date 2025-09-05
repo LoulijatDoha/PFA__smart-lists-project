@@ -1,20 +1,25 @@
 // src/services/userService.jsx
-import apiClient from '../lib/apiClient'; // Assurez-vous que ce chemin est correct
+import apiClient from '../lib/apiClient';
 
-export const getAllUsers = () => {
-  return apiClient.get('/users');
+// La fonction accepte maintenant les paramètres de pagination
+export const getAllUsers = (page = 1, limit = 10) => {
+  return apiClient.get('/users', {
+    params: { page, limit } // Axios va transformer cela en /users?page=1&limit=10
+  });
 };
-
 export const createUser = (userData) => {
-  // userData = { username, password, role }
   return apiClient.post('/users', userData);
 };
 
 export const updateUser = (userId, userData) => {
-  // userData = { username?, role?, is_active?, password? }
   return apiClient.put(`/users/${userId}`, userData);
 };
 
 export const deactivateUser = (userId) => {
   return apiClient.delete(`/users/${userId}`);
+};
+
+// La fonction pour l'admin pour forcer la réinitialisation
+export const resetPassword = (userId, newPassword) => {
+  return apiClient.post(`/users/${userId}/reset-password`, { password: newPassword });
 };

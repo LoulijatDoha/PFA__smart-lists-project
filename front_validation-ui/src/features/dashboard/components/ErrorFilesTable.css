@@ -1,0 +1,100 @@
+/* src/features/dashboard/components/ErrorFilesTable.css */
+
+.table-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  overflow: hidden; /* Important pour que les coins arrondis s'appliquent au tableau */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.error-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.error-table th, .error-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  vertical-align: top; /* Aligner en haut pour les longs messages */
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.error-table tr:last-child td {
+  border-bottom: none;
+}
+
+.error-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #888;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Style des cellules spécifiques --- */
+
+.file-name-cell {
+  font-weight: 500;
+  color: #343a40;
+}
+
+/* Badge pour le type d'erreur */
+.status-badge.status-ERREUR_OCR,
+.status-badge.status-ERREUR_EXTRACTION,
+.status-badge.status-ERREUR_VALIDATION {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Cellule pour le message d'erreur */
+.error-message-cell {
+  max-width: 500px; /* Limite la largeur maximale */
+}
+
+.error-message-cell pre {
+  margin: 0;
+  white-space: pre-wrap;   /* Permet au texte de passer à la ligne */
+  word-break: break-word; /* Casse les mots longs si nécessaire */
+  font-family: inherit;    /* Utilise la même police que le reste */
+  font-size: 0.9rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+/* Bouton "Retraiter" */
+.reprocess-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reprocess-button:hover {
+  background-color: #ffeeba;
+  border-color: #ffdf7e;
+}
+
+/* Message quand il n'y a pas de fichiers en erreur */
+.empty-state {
+  padding: 3rem;
+  text-align: center;
+  color: #155724; /* Vert pour indiquer que tout va bien */
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  font-weight: 500;
+}
