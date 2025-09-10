@@ -1,11 +1,8 @@
 // src/features/users/UserList.jsx
-import React from 'react';
-import { deactivateUser, resetPassword } from '../../services/userService';
-import toast from 'react-hot-toast';
-import { FaEdit, FaKey, FaUserSlash } from 'react-icons/fa'; // Import des icônes
+import React, { useState, useEffect } from 'react';
+import { FaEdit, FaKey, FaUserSlash } from 'react-icons/fa';
 import './UserList.css';
 
-// Petit composant pour créer les avatars avec les initiales
 const Avatar = ({ name }) => {
   const getInitials = (name) => {
     if (!name) return '?';
@@ -18,52 +15,74 @@ const Avatar = ({ name }) => {
   return <div className="avatar">{getInitials(name)}</div>;
 };
 
-const UserList = ({ users, loading, searchTerm, setSearchTerm, onEdit, onDeleteSuccess }) => {
-  
-  const handleDeactivate = async (userId, username) => {
-    if (window.confirm(`Êtes-vous sûr de vouloir désactiver l'utilisateur "${username}" ?`)) {
-      try {
-        await deactivateUser(userId);
-        toast.success("Utilisateur désactivé avec succès.");
-        onDeleteSuccess();
-      } catch (error) {
-        toast.error("Erreur lors de la désactivation.");
-      }
+const UserList = ({ users, loading, searchTerm, setSearchTerm, onAction }) => {
+  const [selectedUserIds, setSelectedUserIds] = useState([]);
+
+  useEffect(() => {
+    setSelectedUserIds([]);
+  }, [users, searchTerm]); // Se réinitialise si on change de page ou si on recherche
+
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedUserIds(users.map(user => user.id));
+    } else {
+      setSelectedUserIds([]);
     }
   };
 
-  const handleResetPassword = async (userId) => {
-    const newPassword = prompt("Veuillez entrer un nouveau mot de passe temporaire pour cet utilisateur :");
-    if (newPassword && newPassword.length >= 8) {
-      try {
-        await resetPassword(userId, newPassword);
-        toast.success("Le mot de passe a été réinitialisé avec succès.");
-      } catch (error) {
-        toast.error("Erreur lors de la réinitialisation du mot de passe.");
-      }
-    } else if (newPassword) {
-      toast.error("Le mot de passe doit contenir au moins 8 caractères.");
-    }
+  const handleSelectOne = (userId) => {
+    setSelectedUserIds(prev =>
+      prev.includes(userId)
+        ? prev.filter(id => id !== userId)
+        : [...prev, userId]
+    );
   };
 
-  if (loading) return <p>Chargement des utilisateurs...</p>;
+  if (loading) return <p>Chargement...</p>;
 
   return (
     <div className="user-list-container">
       <div className="list-controls">
-        <span>Afficher <strong>{users.length}</strong> entrées</span>
         <input
           type="text"
-          placeholder="Rechercher..."
+          placeholder="Rechercher par nom, email..."
           className="search-input"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
+      {selectedUserIds.length > 0 && (
+        <div className="bulk-actions">
+          <span>{selectedUserIds.length} sélectionné(s)</span>
+          <div>
+            <button
+              className="bulk-action-button password"
+              onClick={() => onAction('reset-password-selected', selectedUserIds)}
+            >
+              <FaKey /> Réinit. MDP
+            </button>
+            <button
+              className="bulk-action-button danger"
+              onClick={() => onAction('deactivate-selected', selectedUserIds)}
+            >
+              <FaUserSlash /> Désactiver
+            </button>
+          </div>
+        </div>
+      )}
+
       <table className="users-table">
         <thead>
           <tr>
+            <th>
+              <input
+                type="checkbox"
+                onChange={handleSelectAll}
+                checked={users.length > 0 && selectedUserIds.length === users.length}
+                indeterminate={selectedUserIds.length > 0 && selectedUserIds.length < users.length}
+              />
+            </th>
             <th>Nom Complet</th>
             <th>Rôle</th>
             <th>Statut</th>
@@ -73,7 +92,14 @@ const UserList = ({ users, loading, searchTerm, setSearchTerm, onEdit, onDeleteS
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id}>
+            <tr key={user.id} className={selectedUserIds.includes(user.id) ? 'selected' : ''}>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={selectedUserIds.includes(user.id)}
+                  onChange={() => handleSelectOne(user.id)}
+                />
+              </td>
               <td>
                 <div className="user-info">
                   <Avatar name={user.nom_complet} />
@@ -92,16 +118,16 @@ const UserList = ({ users, loading, searchTerm, setSearchTerm, onEdit, onDeleteS
               <td>{user.last_login || 'Jamais'}</td>
               <td>
                 <div className="actions-cell">
-                  <button className="action-button edit" title="Modifier" onClick={() => onEdit(user)}>
+                  <button className="action-button edit" title="Modifier" onClick={() => onAction('edit', user)}>
                     <FaEdit />
                   </button>
-                  <button className="action-button password" title="Réinitialiser le mot de passe" onClick={() => handleResetPassword(user.id)}>
+                  <button className="action-button password" title="Réinitialiser le mot de passe" onClick={() => onAction('reset-password', user)}>
                     <FaKey />
                   </button>
-                  <button 
+                  <button
                     className="action-button danger"
                     title="Désactiver"
-                    onClick={() => handleDeactivate(user.id, user.username)}
+                    onClick={() => onAction('deactivate', user)}
                     disabled={!user.is_active}
                   >
                     <FaUserSlash />

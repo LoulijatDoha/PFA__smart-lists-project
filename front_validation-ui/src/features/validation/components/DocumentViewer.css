@@ -3,12 +3,14 @@
 .document-viewer-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
   width: 100%;
   background-color: #f0f2f5;
-  border-radius: 8px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
   overflow: hidden;
-  flex-grow: 1;
+  /* On donne une hauteur minimale pour une bonne visibilité */
+  min-height: 80vh; 
+  height: auto;
 }
 
 .viewer-toolbar {
@@ -35,9 +37,7 @@
   transition: background-color 0.2s;
 }
 
-.viewer-toolbar button:hover {
-  background-color: #f1f3f5;
-}
+.viewer-toolbar button:hover { background-color: #f1f3f5; }
 
 .viewer-toolbar span {
   font-size: 0.9rem;
@@ -51,27 +51,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
 }
-
-/* --- MODIFICATIONS IMPORTANTES CI-DESSOUS --- */
 
 .page-container {
   position: relative;
-  margin: 2rem auto;
+  margin: 0 auto 1.5rem auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: inline-block;
   background-color: white;
-  flex-shrink: 0;
-  /* On retire 'display: inline-block' qui pose problème */
-  /* On ajoute 'line-height: 0' pour supprimer tout espace vertical parasite */
-  line-height: 0; 
 }
-
-/* On ajoute une règle spécifique pour l'image pour garantir son bon affichage */
-.page-container img {
-  display: block; /* Force l'image à se comporter comme un bloc, plus prévisible */
-  max-width: 100%; /* Empêche l'image de déborder de son conteneur */
-}
-
 
 .highlight-box {
   position: absolute;

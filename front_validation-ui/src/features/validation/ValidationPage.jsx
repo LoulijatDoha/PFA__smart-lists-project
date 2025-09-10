@@ -18,7 +18,6 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import './ValidationPage.css';
 
 const ValidationPage = () => {
-  // --- Hooks et États (inchangés) ---
   const { sourceFileId } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -37,7 +36,6 @@ const ValidationPage = () => {
   const hasPrevious = currentIndex > 0;
   const hasNext = currentIndex < fileQueue.length - 1 && currentIndex !== -1;
 
-  // --- Fonctions (inchangées) ---
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError('');
@@ -102,7 +100,6 @@ const ValidationPage = () => {
   const currentListData = dossierData?.lists?.[selectedListIndex];
 
   return (
-    // On utilise un conteneur principal pour toute la page
     <div className="validation-page-container">
       <div className="validation-nav-bar">
         <button onClick={() => navigate('/files')} className="back-button">
@@ -125,9 +122,9 @@ const ValidationPage = () => {
       {loading && <div className="loading-overlay">Chargement des données...</div>}
       
       {currentListData && (
-        <div className="validation-page-grid">
-          {/* --- Colonne de gauche (formulaire) --- */}
-          <div className="form-column">
+        <div className="validation-content-wrapper">
+          
+          <div className="form-wrapper">
             <div className="form-section list-tabs">
               <h3>Niveaux trouvés dans ce document</h3>
               <div className="tab-buttons-container">
@@ -154,8 +151,7 @@ const ValidationPage = () => {
             />
           </div>
           
-          {/* --- Colonne de droite (document et recherche) --- */}
-          <div className="viewer-column">
+          <div className="viewer-wrapper">
             <div className="form-section search-section">
               <h3>Associer une Référence au Manuel</h3>
               <ReferentielSearchBar 
@@ -172,6 +168,7 @@ const ValidationPage = () => {
               highlight={currentHighlight}
             />
           </div>
+
         </div>
       )}
     </div>

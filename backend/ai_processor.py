@@ -61,7 +61,6 @@ school_prompt_instructions = """Trouve le nom de l'établissement scolaire. FORM
 year_prompt_instructions = """Trouve l'année scolaire (format AAAA/BBBB). FORMAT JSON: {"annee_scolaire": "AAAA/BBBB", "source_tags": ["E5"]} ou {"annee_scolaire": null, "source_tags": []}"""
 intelligent_standardize_prompt_constrained = """MISSION: Pour un NOUVEAU TERME BRUT, trouve la meilleure correspondance dans la LISTE DE CHOIX AUTORISÉS, en t'aidant de la BASE DE CONNAISSANCES. Ta réponse DOIT être une des valeurs exactes de la LISTE. FORMAT: {"nom_standardise": "CHOIX_EXACT"} ou {"nom_standardise": null}"""
 
-# ---  ---
 extract_levels_and_books_prompt = """Tu es un expert en analyse de listes de fournitures scolaires, spécialisé dans l'extraction de données structurées.
 MISSION : Analyser le document complet pour extraire de manière exhaustive et structurée TOUS les niveaux scolaires et les détails précis de chaque manuel.
 

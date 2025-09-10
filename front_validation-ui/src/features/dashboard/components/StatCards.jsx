@@ -31,6 +31,11 @@ const StatCards = ({ stats, loading, onCardClick }) => {
         <p>Fichiers Validés</p>
       </div>
       
+      <div className="card a-verifier">
+        <h3>{stats.manuels_a_verifier || 0}</h3>
+        <p>Manuels à Vérifier</p>
+      </div>
+
       {isAdmin && (
         <div className="card erreur" onClick={() => onCardClick('erreurs')}>
           <h3>{stats.fichiers_en_erreur || 0}</h3>

@@ -23,3 +23,12 @@ export const deactivateUser = (userId) => {
 export const resetPassword = (userId, newPassword) => {
   return apiClient.post(`/users/${userId}/reset-password`, { password: newPassword });
 };
+
+
+export const bulkDeactivateUsers = (userIds) => {
+  return apiClient.post('/users/bulk-action', { action: 'deactivate', ids: userIds });
+};
+
+export const bulkResetPassword = (userIds, newPassword) => {
+  return apiClient.post('/users/bulk-action', { action: 'reset-password', ids: userIds, password: newPassword });
+};

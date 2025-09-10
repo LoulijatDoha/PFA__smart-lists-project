@@ -120,3 +120,30 @@ def delete_std_entry(std_type, entry_id):
         return jsonify({"message": "Suppression réussie."})
     finally:
         db_conn.close()
+
+@standardisation_bp.route('/<string:std_type>/bulk-delete', methods=['POST'])
+@login_required
+@admin_required
+def bulk_delete_std_entries(std_type):
+    if std_type not in CONFIG:
+        return jsonify({"error": f"Type '{std_type}' invalide."}), 404
+        
+    data = request.json
+    entry_ids = data.get('ids')
+    if not entry_ids:
+        return jsonify({"message": "Liste d'IDs requise."}), 400
+
+    table = CONFIG[std_type]['table']
+    pk = CONFIG[std_type]['pk']
+    
+    db_conn = database.get_connection()
+    cursor = db_conn.cursor()
+
+    try:
+        placeholders = ', '.join(['%s'] * len(entry_ids))
+        query = f"DELETE FROM `{table}` WHERE `{pk}` IN ({placeholders})"
+        cursor.execute(query, tuple(entry_ids))
+        db_conn.commit()
+        return jsonify({"message": "Suppression groupée réussie."})
+    finally:
+        db_conn.close()

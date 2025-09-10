@@ -1,6 +1,6 @@
 // src/features/standardisation/StandardisationAdminPage.jsx
 import React, { useState, useEffect, useCallback } from 'react';
-import { getStandardisationEntries } from '../../services/standardisationService';
+import { getStandardisationEntries, bulkDeleteStandardisationEntries } from '../../services/standardisationService';
 import StandardisationList from './StandardisationList';
 import StandardisationFormModal from './StandardisationFormModal';
 import Pagination from '../../components/shared/Pagination';
@@ -14,59 +14,65 @@ const StandardisationAdminPage = () => {
   const [entries, setEntries] = useState([]);
   const [currentType, setCurrentType] = useState('std-ecoles');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingEntry, setEditingEntry] = useState(null);
 
-  const fetchEntries = useCallback(async () => {
+  const fetchEntries = useCallback(async (page) => {
     setLoading(true);
-    setError('');
     try {
-        const response = await getStandardisationEntries(currentType, currentPage, ITEMS_PER_PAGE);
-        setEntries(response.data.data);
-        setTotalPages(response.data.total_pages);
-    } catch (err) {
-        const errorDetails = err.response?.data?.details || err.message;
-        setError(`Impossible de charger les données. Erreur: ${errorDetails}`);
-        console.error("Erreur détaillée:", err.response?.data);
-    } finally {
-        setLoading(false);
-    }
-  }, [currentType, currentPage]);
-  
+      const response = await getStandardisationEntries(currentType, page, ITEMS_PER_PAGE);
+      setEntries(response.data.data);
+      setTotalPages(response.data.total_pages);
+    } catch (err) { toast.error("Impossible de charger les règles."); }
+    finally { setLoading(false); }
+  }, [currentType]);
+
   useEffect(() => {
-    fetchEntries();
-  }, [fetchEntries]);
+    fetchEntries(currentPage);
+  }, [currentPage, fetchEntries]);
 
-  const handleTypeChange = (newType) => {
-    if (newType !== currentType) {
-        setCurrentType(newType);
-        setCurrentPage(1);
-    }
-  };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [currentType]);
 
-  const handleAddEntry = () => {
-    setEditingEntry(null);
-    setIsModalOpen(true);
-  };
-
-  const handleEditEntry = (entry) => {
-    setEditingEntry(entry);
-    setIsModalOpen(true);
-  };
-  
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingEntry(null);
   };
   
   const handleSaveSuccess = () => {
-    toast.success("Opération réussie !");
     handleCloseModal();
-    fetchEntries();
+    fetchEntries(currentPage);
+    toast.success("Règle enregistrée !");
   };
+
+  const handleAction = async (actionType, payload) => {
+    switch(actionType) {
+        case 'edit':
+            setEditingEntry(payload);
+            setIsModalOpen(true);
+            break;
+        case 'add':
+            setEditingEntry(null);
+            setIsModalOpen(true);
+            break;
+        case 'delete-success':
+            fetchEntries(currentPage);
+            break;
+        case 'delete-selected':
+            if (window.confirm(`Supprimer les ${payload.length} règles sélectionnées ?`)) {
+                try {
+                    await bulkDeleteStandardisationEntries(currentType, payload);
+                    toast.success("Règles supprimées.");
+                    fetchEntries(currentPage);
+                } catch (error) { toast.error("Erreur de suppression groupée."); }
+            }
+            break;
+        default: break;
+    }
+  }
 
   const typeLabel = currentType === 'std-ecoles' ? 'Écoles' : 'Niveaux';
 
@@ -76,24 +82,21 @@ const StandardisationAdminPage = () => {
         <h1>Gestion de la Standardisation</h1>
         <div className="header-actions">
             <div>
-              <button onClick={() => handleTypeChange('std-ecoles')} disabled={currentType === 'std-ecoles'} className="tab-button">Écoles</button>
-              <button onClick={() => handleTypeChange('std-niveaux')} disabled={currentType === 'std-niveaux'} className="tab-button" style={{ marginLeft: '0.5rem' }}>Niveaux</button>
+              <button onClick={() => setCurrentType('std-ecoles')} disabled={currentType === 'std-ecoles'} className="tab-button">Écoles</button>
+              <button onClick={() => setCurrentType('std-niveaux')} disabled={currentType === 'std-niveaux'} className="tab-button" style={{ marginLeft: '0.5rem' }}>Niveaux</button>
             </div>
-            <button onClick={handleAddEntry} className="add-rule-button">
+            <button onClick={() => handleAction('add')} className="add-rule-button">
                 <FaPlus size={12} style={{ marginRight: '8px' }} />
                 Ajouter une Règle ({typeLabel})
             </button>
         </div>
       </div>
       
-      {error && <p className="error-message">{error}</p>}
-      
       <StandardisationList 
         entries={entries} 
         loading={loading}
         stdType={currentType}
-        onEdit={handleEditEntry}
-        onDeleteSuccess={handleSaveSuccess}
+        onAction={handleAction}
       />
 
       <Pagination
@@ -112,5 +115,4 @@ const StandardisationAdminPage = () => {
     </div>
   );
 };
-
 export default StandardisationAdminPage;

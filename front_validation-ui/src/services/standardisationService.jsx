@@ -40,3 +40,7 @@ export const updateStandardisationEntry = (stdType, entryId, dataToUpdate) => {
 export const deleteStandardisationEntry = (stdType, entryId) => {
   return apiClient.delete(`/standardisation/${stdType}/${entryId}`);
 };
+
+export const bulkDeleteStandardisationEntries = (stdType, entryIds) => {
+  return apiClient.post(`/standardisation/${stdType}/bulk-delete`, { ids: entryIds });
+};

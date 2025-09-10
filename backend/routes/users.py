@@ -134,3 +134,49 @@ def deactivate_user(user_id):
     finally:
         if db_conn and db_conn.is_connected():
             db_conn.close()
+
+@users_bp.route('/bulk-action', methods=['POST'])
+@login_required
+@admin_required
+def bulk_user_action():
+    data = request.json
+    action = data.get('action')
+    user_ids = data.get('ids')
+
+    if not action or not user_ids:
+        return jsonify({"message": "Action et IDs requis."}), 400
+
+    db_conn = database.get_connection()
+    cursor = db_conn.cursor()
+    
+    try:
+        placeholders = ', '.join(['%s'] * len(user_ids))
+        
+        if action == 'deactivate':
+            # On s'assure que l'admin ne se désactive pas lui-même
+            if current_user.id in user_ids:
+                user_ids.remove(current_user.id)
+                if not user_ids:
+                    return jsonify({"message": "Impossible de désactiver son propre compte."}), 400
+
+            query = f"UPDATE users SET is_active = FALSE WHERE id IN ({placeholders})"
+            cursor.execute(query, tuple(user_ids))
+            
+        elif action == 'reset-password':
+            new_password = data.get('password')
+            if not new_password:
+                return jsonify({"message": "Nouveau mot de passe requis."}), 400
+            
+            password_hash = generate_password_hash(new_password)
+            query = f"UPDATE users SET password_hash = %s, must_change_password = TRUE WHERE id IN ({placeholders})"
+            # On passe le hash en premier, puis tous les IDs
+            cursor.execute(query, (password_hash, *user_ids))
+
+        else:
+            return jsonify({"message": "Action non valide."}), 400
+
+        db_conn.commit()
+        return jsonify({"message": "Action groupée réussie."})
+
+    finally:
+        db_conn.close()

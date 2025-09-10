@@ -12,25 +12,20 @@
   justify-content: center;
   align-items: center; /* Centre la modale verticalement */
   z-index: 1000;
-  
-  /* --- CORRECTION 1 : Permettre le défilement --- */
-  /* On ajoute un padding pour que la modale ne colle pas aux bords de l'écran */
-  padding: 2rem; 
-  /* Si le contenu est trop grand, c'est l'overlay qui devient scrollable */
-  overflow-y: auto; 
+  overflow-y: auto;
+  padding: 2rem;
 }
 
 /* --- La boîte blanche de la modale --- */
 .modal-content {
   background-color: white;
-  padding: 2rem 2.5rem; /* Plus d'espace horizontal */
+  padding: 2rem 2.5rem;
   border-radius: 12px;
   width: 100%;
-  max-width: 550px; /* Un peu plus large pour plus de confort */
+  max-width: 550px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-
-  /* --- CORRECTION 2 : Animation d'apparition --- */
   animation: slideIn 0.3s ease-out;
+  margin: auto;
 }
 
 @keyframes slideIn {
