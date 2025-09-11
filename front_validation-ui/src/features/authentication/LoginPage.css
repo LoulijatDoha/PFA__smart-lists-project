@@ -106,7 +106,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
+  padding: 1rem;
   background: #ffffff;
   position: relative;
 }
@@ -486,7 +486,7 @@
   }
   
   .login-image-overlay h2 {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
   
   .login-image-overlay p {

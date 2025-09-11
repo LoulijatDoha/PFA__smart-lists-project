@@ -1,21 +1,17 @@
 /* src/components/shared/Header.css */
-:root {
-  /* --- NOUVELLE PALETTE DE COULEURS --- */
-  --header-bg: #2c5530;          /* Vert principal */
-  --header-text: #f8f9fa;       /* Texte blanc cassé */
-  --header-accent: #4a7c59;      /* Vert plus clair pour les accents */
-  --header-border: #1e3b21;       /* Vert très foncé pour la bordure */
-  --header-height: 70px;
-}
 
 .app-header {
-  background-color: var(--header-bg);
+  /* Utilise la couleur primaire de votre thème */
+  background-color: var(--color-primary); 
   height: var(--header-height);
   padding: 0 2rem;
-  border-bottom: 1px solid var(--header-border);
-  color: var(--header-text);
+  border-bottom: 2px solid var(--color-primary-dark);
+  color: var(--color-text-on-primary);
   width: 100%;
   box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header-content {
@@ -27,12 +23,11 @@
   margin: 0 auto;
 }
 
-/* --- Zone Gauche : Logo --- */
 .header-brand {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: var(--header-text);
+  color: var(--color-text-on-primary);
 }
 
 .header-logo {
@@ -47,7 +42,7 @@
   letter-spacing: 0.5px;
 }
 
-/* --- Zone Centre : Navigation --- */
+/* Navigation principale */
 .header-nav {
   display: flex;
   gap: 1.5rem;
@@ -69,14 +64,17 @@
   bottom: -5px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: var(--header-accent);
+  height: 3px;
+  /* Utilise le vert plus clair pour le surlignage, pour un effet sobre */
+  background-color: var(--color-primary-light); 
+  border-radius: 2px;
   transform: scaleX(0);
+  transform-origin: center;
   transition: transform 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-  color: #ffffff;
+  color: var(--color-text-on-primary);
 }
 
 .nav-link:hover::after,
@@ -85,10 +83,10 @@
 }
 
 .nav-link.active {
-  color: #ffffff;
+  color: var(--color-text-on-primary);
 }
 
-/* --- Zone Droite : Menu Utilisateur --- */
+/* Menu Utilisateur */
 .header-user-menu {
   position: relative;
 }
@@ -98,8 +96,8 @@
   align-items: center;
   gap: 0.75rem;
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--header-text);
+  border: 1px solid var(--color-primary-light);
+  color: var(--color-text-on-primary);
   padding: 0.5rem 1rem;
   border-radius: 50px;
   cursor: pointer;
@@ -109,10 +107,9 @@
 }
 
 .user-menu-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--color-primary-light);
+  border-color: var(--color-text-on-primary);
 }
-
 .user-icon {
   font-size: 1.2rem;
 }

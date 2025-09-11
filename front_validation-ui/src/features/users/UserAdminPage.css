@@ -1,88 +1,90 @@
-/* src/features/users/UserAdminPage.css */
+/* src/features/users/UserAdminPage.css - Version simple */
 
-/* --- Conteneur principal de la page --- */
 .admin-content-page {
-  /* Animation d'apparition douce pour la page */
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* --- En-tête de la page (Titre + Bouton d'ajout) --- */
+/* --- En-tête de page --- */
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e9ecef; /* Ligne de séparation subtile */
+  padding: 1.5rem 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
 }
 
 .page-header h1 {
   margin: 0;
   font-size: 1.8rem;
-  font-weight: 600;
-  color: #343a40;
+  font-weight: 700;
+  color: var(--color-text-primary, #2c3e50);
 }
 
-/* --- Bouton "Ajouter un Utilisateur" --- */
+/* --- Bouton d'ajout --- */
 .add-button {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background-color: #2c5530; /* Vert foncé, couleur primaire */
-  color: white;
+  gap: 0.6rem;
+  background-color: var(--header-bg, #2c5530) !important;
+  color: white !important;
   border: none;
-  padding: 0.7rem 1.3rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  transition: all 0.2s ease;
+  min-height: 44px;
 }
 
 .add-button:hover {
-  background-color: #1e3b21; /* Vert plus foncé au survol */
-  box-shadow: 0 4px 12px rgba(44, 85, 48, 0.2);
-  transform: translateY(-2px);
+  background-color: var(--color-primary-dark, #1e3a21) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(44, 85, 48, 0.25);
 }
 
-/* --- Conteneur pour les cartes de statistiques --- */
+/* --- Cartes de statistiques --- */
 .stat-card-container {
   display: grid;
-  /* Crée une grille responsive qui s'adapte à la taille de l'écran */
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
-/* --- Style des cartes de statistiques individuelles --- */
 .stat-card {
   background-color: #ffffff;
   padding: 1.5rem;
-  border-radius: 12px; /* Bords plus arrondis */
+  border-radius: 12px;
   border: 1px solid #e9ecef;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .stat-card h3 {
-  font-size: 2.8rem;
+  font-size: 2rem;
   margin: 0 0 0.5rem 0;
-  color: #2c5530; /* Vert foncé pour le chiffre */
+  color: var(--header-bg, #2c5530);
+  font-weight: 700;
 }
 
 .stat-card p {
   margin: 0;
-  color: #6c757d; /* Gris pour le texte descriptif */
+  color: var(--color-text-secondary, #6c757d);
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
-/* --- Animation d'apparition --- */
+/* --- Animation d'entrée --- */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -91,5 +93,38 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .add-button {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .stat-card-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1.25rem;
+  }
+  
+  .stat-card h3 {
+    font-size: 1.8rem;
   }
 }

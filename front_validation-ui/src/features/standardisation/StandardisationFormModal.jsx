@@ -1,35 +1,36 @@
 // src/features/standardisation/StandardisationFormModal.jsx
 import React, { useState, useEffect } from 'react';
 import { createStandardisationEntry, updateStandardisationEntry } from '../../services/standardisationService';
-import '../users/UserFormModal.css'; // On réutilise le même style que pour les utilisateurs
+import '../users/UserFormModal.css'; // Réutilise le style du modal utilisateur qui est générique
 
 const STATUT_OPTIONS = ['VALIDÉ', 'AUTO_APPROUVÉ', 'À_VÉRIFIER'];
 
 const StandardisationFormModal = ({ isOpen, stdType, entryToEdit, onClose, onSave }) => {
-  const initialState = {
+  const getInitialState = () => ({
     valeur_brute: '',
     nom_standardise: '',
     statut: 'À_VÉRIFIER',
     score_confiance: ''
-  };
-  const [formData, setFormData] = useState(initialState);
+  });
+
+  const [formData, setFormData] = useState(getInitialState());
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
   const isEditing = !!entryToEdit;
 
   useEffect(() => {
     if (isOpen) {
-      if (isEditing) {
+      if (isEditing && entryToEdit) {
         setFormData({
           valeur_brute: entryToEdit.valeur_brute || '',
           nom_standardise: entryToEdit.nom_standardise || '',
           statut: entryToEdit.statut || 'À_VÉRIFIER',
-          score_confiance: entryToEdit.score_confiance || ''
+          score_confiance: entryToEdit.score_confiance ?? ''
         });
       } else {
-        setFormData(initialState);
+        setFormData(getInitialState());
       }
+      setError(''); // Clear error on open
     }
   }, [entryToEdit, isOpen]);
 
@@ -43,11 +44,15 @@ const StandardisationFormModal = ({ isOpen, stdType, entryToEdit, onClose, onSav
     setLoading(true);
     setError('');
 
-    const dataPayload = {
-        ...formData,
-        score_confiance: formData.score_confiance ? parseFloat(formData.score_confiance) : null
-    };
+    const score = formData.score_confiance ? parseFloat(formData.score_confiance) : null;
+    if (score !== null && (score < 0 || score > 1)) {
+        setError("Le score de confiance doit être compris entre 0 et 1.");
+        setLoading(false);
+        return;
+    }
 
+    const dataPayload = { ...formData, score_confiance: score };
+    
     try {
       if (isEditing) {
         await updateStandardisationEntry(stdType, entryToEdit.id, dataPayload);
@@ -65,36 +70,44 @@ const StandardisationFormModal = ({ isOpen, stdType, entryToEdit, onClose, onSav
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>{isEditing ? `Modifier une Règle` : 'Ajouter une Règle'}</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Valeur Brute</label>
-            <input type="text" name="valeur_brute" value={formData.valeur_brute} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label>Nom Standardisé</label>
-            <input type="text" name="nom_standardise" value={formData.nom_standardise} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label>Statut</label>
-            <select name="statut" value={formData.statut} onChange={handleChange}>
-              {STATUT_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Score de Confiance (optionnel)</label>
-            <input type="number" step="0.01" min="0" max="1" name="score_confiance" value={formData.score_confiance} onChange={handleChange} />
-          </div>
-          
-          {error && <p className="error-message">{error}</p>}
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        
+        <div className="modal-header">
+          <h2>{isEditing ? `Modifier la Règle #${entryToEdit.id}` : 'Ajouter une Règle'}</h2>
+        </div>
 
+        <div className="modal-body">
+          <form id="std-form" onSubmit={handleSubmit} noValidate>
+            <div className="form-group">
+              <label htmlFor="valeur_brute">Valeur Brute</label>
+              <input id="valeur_brute" type="text" name="valeur_brute" value={formData.valeur_brute} onChange={handleChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="nom_standardise">Nom Standardisé</label>
+              <input id="nom_standardise" type="text" name="nom_standardise" value={formData.nom_standardise} onChange={handleChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="statut">Statut</label>
+              <select id="statut" name="statut" value={formData.statut} onChange={handleChange}>
+                {STATUT_OPTIONS.map(opt => <option key={opt} value={opt}>{opt.replace('_', ' ')}</option>)}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="score_confiance">Score de Confiance (0.00 - 1.00)</label>
+              <input id="score_confiance" type="number" step="0.01" min="0" max="1" name="score_confiance" value={formData.score_confiance} onChange={handleChange} placeholder="Ex: 0.95" />
+            </div>
+          </form>
+        </div>
+
+        <div className="modal-footer">
+          {error && <p className="error-message-inline">{error}</p>}
           <div className="form-actions">
-            <button type="button" onClick={onClose} disabled={loading}>Annuler</button>
-            <button type="submit" disabled={loading}>{loading ? 'Sauvegarde...' : 'Enregistrer'}</button>
+            <button type="button" className="button-secondary" onClick={onClose} disabled={loading}>Annuler</button>
+            <button type="submit" form="std-form" disabled={loading}>{loading ? 'Sauvegarde...' : 'Enregistrer'}</button>
           </div>
-        </form>
+        </div>
+
       </div>
     </div>
   );

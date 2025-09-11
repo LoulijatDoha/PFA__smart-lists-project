@@ -4,25 +4,32 @@ import { createUser, updateUser } from '../../services/userService';
 import './UserFormModal.css';
 
 const UserFormModal = ({ isOpen, userToEdit, onClose, onSave }) => {
-  const initialState = {
+  const getInitialState = () => ({
     username: '', password: '', role: 'validator', is_active: true,
     nom_complet: '', email: '', poste: ''
-  };
-  const [formData, setFormData] = useState(initialState);
+  });
+
+  const [formData, setFormData] = useState(getInitialState());
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const isEditing = !!userToEdit;
 
   useEffect(() => {
     if (isOpen) {
-      if (isEditing) {
+      if (isEditing && userToEdit) {
         setFormData({
-          username: userToEdit.username, password: '', role: userToEdit.role, is_active: userToEdit.is_active,
-          nom_complet: userToEdit.nom_complet || '', email: userToEdit.email || '', poste: userToEdit.poste || ''
+          username: userToEdit.username,
+          password: '',
+          role: userToEdit.role,
+          is_active: userToEdit.is_active,
+          nom_complet: userToEdit.nom_complet || '',
+          email: userToEdit.email || '',
+          poste: userToEdit.poste || ''
         });
       } else {
-        setFormData(initialState);
+        setFormData(getInitialState());
       }
+      setError(''); // Vider les erreurs à chaque ouverture
     }
   }, [userToEdit, isOpen]);
 
@@ -35,11 +42,19 @@ const UserFormModal = ({ isOpen, userToEdit, onClose, onSave }) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+
     try {
       if (isEditing) {
-        const { password, ...dataToUpdate } = formData; // Exclure le mot de passe
-        await updateUser(userToEdit.id, dataToUpdate);
+        // Exclure le mot de passe s'il est vide, sinon l'API pourrait le mettre à jour
+        const { password, ...dataToUpdate } = formData;
+        const payload = password ? dataToUpdate : { ...dataToUpdate, password: undefined };
+        await updateUser(userToEdit.id, payload);
       } else {
+        if (!formData.password || formData.password.length < 8) {
+          setError("Le mot de passe est requis et doit faire au moins 8 caractères.");
+          setLoading(false);
+          return;
+        }
         await createUser(formData);
       }
       onSave();
@@ -53,53 +68,65 @@ const UserFormModal = ({ isOpen, userToEdit, onClose, onSave }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>{isEditing ? `Modifier l'utilisateur` : 'Ajouter un utilisateur'}</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Nom Complet</label>
-            <input type="text" name="nom_complet" value={formData.nom_complet} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-          </div>
-           <div className="form-group">
-            <label>Poste</label>
-            <input type="text" name="poste" value={formData.poste} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label>Nom d'utilisateur</label>
-            <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label>Mot de passe</label>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} 
-                   placeholder={isEditing ? 'Ignoré en modification' : ''} 
-                   required={!isEditing}
-                   disabled={isEditing} />
-            {isEditing && <small>Utilisez le bouton "Réinitialiser" dans la liste pour changer le mot de passe.</small>}
-          </div>
-          <div className="form-group">
-            <label>Rôle</label>
-            <select name="role" value={formData.role} onChange={handleChange}>
-              <option value="validator">Validateur</option>
-              <option value="admin">Administrateur</option>
-            </select>
-          </div>
-          {isEditing && (
-            <div className="form-group-checkbox">
-              <input type="checkbox" name="is_active" checked={formData.is_active} onChange={handleChange} />
-              <label>Compte actif</label>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        
+        <div className="modal-header">
+          <h2>{isEditing ? `Modifier : ${userToEdit.username}` : 'Ajouter un utilisateur'}</h2>
+        </div>
+
+        <div className="modal-body">
+          <form id="user-form" onSubmit={handleSubmit} noValidate>
+            <div className="form-group">
+              <label htmlFor="nom_complet">Nom Complet</label>
+              <input id="nom_complet" type="text" name="nom_complet" value={formData.nom_complet} onChange={handleChange} required />
             </div>
-          )}
-          {error && <p className="error-message">{error}</p>}
-          <div className="form-actions">
-            <button type="button" onClick={onClose} disabled={loading}>Annuler</button>
-            <button type="submit" disabled={loading}>{loading ? 'Sauvegarde...' : 'Enregistrer'}</button>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input id="email" type="email" name="email" value={formData.email} onChange={handleChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="poste">Poste</label>
+              <input id="poste" type="text" name="poste" value={formData.poste} onChange={handleChange} />
+            </div>
+            <hr style={{border: 'none', borderTop: '1px solid #eee', margin: '2rem 0'}} />
+            <div className="form-group">
+              <label htmlFor="username">Nom d'utilisateur</label>
+              <input id="username" type="text" name="username" value={formData.username} onChange={handleChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Mot de passe</label>
+              <input 
+                id="password" type="password" name="password" value={formData.password} onChange={handleChange} 
+                placeholder={isEditing ? 'Laisser vide pour ne pas changer' : ''} 
+                required={!isEditing}
+              />
+              {isEditing && <small>Pour forcer un changement, utilisez le bouton "Réinitialiser" dans la liste.</small>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="role">Rôle</label>
+              <select id="role" name="role" value={formData.role} onChange={handleChange}>
+                <option value="validator">Validateur</option>
+                <option value="admin">Administrateur</option>
+              </select>
+            </div>
+            {isEditing && (
+              <div className="form-group-checkbox">
+                <input id="is_active" type="checkbox" name="is_active" checked={formData.is_active} onChange={handleChange} />
+                <label htmlFor="is_active">Le compte est actif</label>
+              </div>
+            )}
+          </form>
+        </div>
+
+        <div className="modal-footer">
+           {error && <p className="error-message-inline">{error}</p>}
+           <div className="form-actions">
+            <button type="button" className="button-secondary" onClick={onClose} disabled={loading}>Annuler</button>
+            <button type="submit" form="user-form" disabled={loading}>{loading ? 'Sauvegarde...' : 'Enregistrer'}</button>
           </div>
-        </form>
+        </div>
+
       </div>
     </div>
   );

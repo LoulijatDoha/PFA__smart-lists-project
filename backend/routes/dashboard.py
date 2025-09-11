@@ -5,6 +5,8 @@ import database
 
 dashboard_bp = Blueprint('dashboard_bp', __name__)
 
+# Prototyping/routes/dashboard.py
+# ... (imports)
 
 @dashboard_bp.route('/stats', methods=['GET'])
 @login_required

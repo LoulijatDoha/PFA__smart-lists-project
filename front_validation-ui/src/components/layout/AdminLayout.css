@@ -1,80 +1,245 @@
 /* src/components/layout/AdminLayout.css */
 
+:root {
+  --header-bg: #2c5530;
+  --color-primary-dark: #1e3a21;
+  --color-text-primary: #2c3e50;
+  --color-text-secondary: #6c757d;
+  --color-surface: #ffffff;
+  --color-background: #f8f9fa;
+  --border-color: #e9ecef;
+  --admin-sidebar-width: 250px;
+  --admin-sidebar-collapsed-width: 80px;
+}
+
 .admin-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f8f9fa; /* Fond général pour la page */
+  background-color: var(--color-background);
 }
 
 .admin-container {
   display: flex;
-  flex-grow: 1; /* Permet au conteneur de remplir l'espace vertical disponible */
-  max-width: 1600px; /* Largeur maximale pour les grands écrans */
-  width: 100%;
-  margin: 0 auto;
+  flex-grow: 1;
 }
 
-/* --- Barre latérale de navigation --- */
+/* --- Barre Latérale --- */
 .admin-sidebar {
-  flex: 0 0 240px; /* Largeur fixe pour la barre latérale, ne grandit pas, ne rétrécit pas */
-  background-color: #ffffff;
-  border-right: 1px solid #e9ecef;
-  padding: 2rem 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--border-color);
+  transition: flex-basis 0.25s ease-in-out;
+}
+
+.admin-layout.is-resizing .admin-sidebar {
+  transition: none; /* Désactiver l'animation pendant le redimensionnement */
+}
+
+/* CORRIGÉ: Le header de la sidebar utilise flexbox */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.sidebar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, width 0.2s ease;
+  margin: 0;
+}
+
+.admin-sidebar.collapsed .sidebar-title {
+  opacity: 0;
+  width: 0;
+}
+
+/* CORRIGÉ: Style du bouton de bascule */
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: transform 0.25s ease, color 0.2s ease, background-color 0.2s ease;
+}
+.sidebar-toggle:hover {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.admin-sidebar.collapsed .sidebar-header {
+  justify-content: center; /* Centrer le bouton quand le titre est caché */
 }
 
 .admin-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem; /* Espace entre les liens */
+  padding: 0 1rem;
+  overflow: hidden;
 }
 
 .admin-nav-link {
-  display: block;
-  padding: 0.8rem 1.25rem;
-  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  font-weight: 500;
-  border-radius: 8px; /* Bords arrondis */
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-sidebar.collapsed .admin-nav-link {
+  justify-content: center;
 }
 
 .admin-nav-link:hover {
-  background-color: #f1f3f5;
-  color: #212529;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
 }
 
-/* Style du lien actif (quand on est sur la page correspondante) */
 .admin-nav-link.active {
-  background-color: #4a7c59; /* Vert foncé, cohérent avec le header */
+  background-color: var(--header-bg);
   color: white;
-  font-weight: bold;
+  font-weight: 500;
 }
 
-/* --- Contenu principal de la page d'administration --- */
+.nav-icon {
+  font-size: 1.3rem; /* Légèrement plus grand pour la visibilité */
+  flex-shrink: 0;
+}
+
+.nav-text {
+  transition: opacity 0.2s ease;
+}
+
+.admin-sidebar.collapsed .nav-text {
+  opacity: 0;
+  width: 0;
+}
+
+.sidebar-resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 5;
+}
+
+/* --- Contenu Principal --- */
 .admin-content {
-  flex-grow: 1; /* Le contenu prend tout l'espace restant */
-  padding: 2rem;
-  /* overflow-y: auto; Si jamais le contenu est très long */
+  flex-grow: 1;
+  padding: 2.5rem;
+  overflow-y: auto;
+  width: 100%;
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-  .admin-container {
+/* CORRIGÉ: Conteneur de page avec largeur max pour centrer le contenu */
+.admin-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* --- Styles Communs de Page (En-tête, Cartes, etc.) --- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background-color: var(--color-surface);
+  padding: 1.25rem 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.header-action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--header-bg);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-action-button:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 4px 12px rgba(44, 85, 48, 0.2);
+}
+
+.stat-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: var(--color-surface);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--header-bg);
+  font-weight: 700;
+}
+
+.stat-card p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Animation et Responsive */
+.page-animation {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 992px) {
+  .admin-content {
+    padding: 1.5rem 1rem;
+  }
+  .page-header {
     flex-direction: column;
-  }
-
-  .admin-sidebar {
-    flex-basis: auto; /* La barre latérale prend la hauteur nécessaire */
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #e9ecef;
-    padding: 1rem;
-  }
-
-  .admin-nav {
-    flex-direction: row; /* Les liens sont côte à côte sur mobile */
-    justify-content: center;
-    flex-wrap: wrap; /* Passe à la ligne si pas assez de place */
+    gap: 1rem;
+    align-items: stretch;
   }
 }

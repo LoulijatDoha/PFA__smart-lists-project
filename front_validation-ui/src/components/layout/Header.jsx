@@ -42,7 +42,7 @@ const Header = () => {
         {/* --- ZONE CENTRE : Navigation Principale --- */}
         <nav className="header-nav">
           <NavLink to="/dashboard" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-            Tableau de Bord
+            Accueil
           </NavLink>
           <NavLink to="/files" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
             Fichiers

@@ -25,17 +25,26 @@ const StandardisationAdminPage = () => {
       const response = await getStandardisationEntries(currentType, page, ITEMS_PER_PAGE);
       setEntries(response.data.data);
       setTotalPages(response.data.total_pages);
-    } catch (err) { toast.error("Impossible de charger les règles."); }
-    finally { setLoading(false); }
+    } catch (err) { 
+      toast.error("Impossible de charger les règles."); 
+    } finally { 
+      setLoading(false); 
+    }
   }, [currentType]);
 
   useEffect(() => {
-    fetchEntries(currentPage);
-  }, [currentPage, fetchEntries]);
+    fetchEntries(1); // Toujours revenir à la page 1 lors du changement de type ou au montage
+  }, [fetchEntries]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [currentType]);
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    fetchEntries(page);
+  };
+  
+  const handleTypeChange = (type) => {
+    setCurrentType(type);
+    setCurrentPage(1); // Réinitialiser la page
+  };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -45,7 +54,7 @@ const StandardisationAdminPage = () => {
   const handleSaveSuccess = () => {
     handleCloseModal();
     fetchEntries(currentPage);
-    toast.success("Règle enregistrée !");
+    toast.success("Règle enregistrée avec succès !");
   };
 
   const handleAction = async (actionType, payload) => {
@@ -62,12 +71,15 @@ const StandardisationAdminPage = () => {
             fetchEntries(currentPage);
             break;
         case 'delete-selected':
-            if (window.confirm(`Supprimer les ${payload.length} règles sélectionnées ?`)) {
+            if (window.confirm(`Voulez-vous vraiment supprimer les ${payload.length} règles sélectionnées ?`)) {
                 try {
                     await bulkDeleteStandardisationEntries(currentType, payload);
-                    toast.success("Règles supprimées.");
-                    fetchEntries(currentPage);
-                } catch (error) { toast.error("Erreur de suppression groupée."); }
+                    toast.success("Les règles sélectionnées ont été supprimées.");
+                    fetchEntries(1); // Revenir à la première page après une suppression groupée
+                    setCurrentPage(1);
+                } catch (error) { 
+                  toast.error("Une erreur est survenue lors de la suppression groupée."); 
+                }
             }
             break;
         default: break;
@@ -79,14 +91,14 @@ const StandardisationAdminPage = () => {
   return (
     <div className="std-admin-page">
       <div className="page-header">
-        <h1>Gestion de la Standardisation</h1>
+        <h1>Standardisation</h1>
         <div className="header-actions">
             <div>
-              <button onClick={() => setCurrentType('std-ecoles')} disabled={currentType === 'std-ecoles'} className="tab-button">Écoles</button>
-              <button onClick={() => setCurrentType('std-niveaux')} disabled={currentType === 'std-niveaux'} className="tab-button" style={{ marginLeft: '0.5rem' }}>Niveaux</button>
+              <button onClick={() => handleTypeChange('std-ecoles')} disabled={currentType === 'std-ecoles'} className="tab-button">Écoles</button>
+              <button onClick={() => handleTypeChange('std-niveaux')} disabled={currentType === 'std-niveaux'} className="tab-button" style={{ marginLeft: '0.5rem' }}>Niveaux</button>
             </div>
-            <button onClick={() => handleAction('add')} className="add-rule-button">
-                <FaPlus size={12} style={{ marginRight: '8px' }} />
+            <button onClick={() => handleAction('add')} className="header-action-button">
+                <FaPlus size={12} />
                 Ajouter une Règle ({typeLabel})
             </button>
         </div>
@@ -99,11 +111,13 @@ const StandardisationAdminPage = () => {
         onAction={handleAction}
       />
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={(page) => setCurrentPage(page)}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
       
       <StandardisationFormModal 
         isOpen={isModalOpen}
@@ -115,4 +129,5 @@ const StandardisationAdminPage = () => {
     </div>
   );
 };
+
 export default StandardisationAdminPage;
