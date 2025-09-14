@@ -6,17 +6,17 @@ from config import DB_CONFIG
 def get_connection():
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
-        print("Connexion à la base de données réussie.")
+        print("Database connection successful.")
         return conn
     except Exception as e:
-        print(f"Erreur de connexion à la BDD: {e}")
+        print(f"DB connection error: {e}")
         raise
 
 def get_fichiers_traites(conn):
-    """Récupère les IDs des fichiers déjà traités avec succès (statut TRAITÉ)."""
+    """Retrieves the IDs of files already successfully processed (status TRAITÉ)."""
     cursor = conn.cursor()
-    # On ne filtre que les fichiers TRAITÉS avec succès pour ne pas les relancer.
-    # Ceux en erreur (ERREUR_EXTRACTION, etc.) seront retraités.
+    # We only filter for successfully PROCESSED files to avoid re-running them.
+    # Those with errors (ERREUR_EXTRACTION, etc.) will be reprocessed.
     query = "SELECT id_fichier_drive FROM logs_fichiers WHERE statut = 'TRAITÉ'"
     cursor.execute(query)
     fichiers_traites = {row[0] for row in cursor.fetchall()}
@@ -30,7 +30,7 @@ def get_standardisation_knowledge_base(conn, entity_type: str):
     knowledge_base = cursor.fetchall()
     cursor.close()
     if not knowledge_base:
-        print(f"    -> AVERTISSEMENT: La base de connaissances pour '{entity_type}' est vide.")
+        print(f"    -> WARNING: The knowledge base for '{entity_type}' is empty.")
     return knowledge_base
 
 def learn_new_standardisation(conn, valeur_brute: str, nom_standardise: str, entity_type: str):
@@ -46,7 +46,7 @@ def learn_new_standardisation(conn, valeur_brute: str, nom_standardise: str, ent
         cursor.execute(query, (valeur_propre, nom_standardise))
         conn.commit()
     except Exception as e:
-        print(f"    -> ERREUR lors de l'apprentissage de la standardisation pour '{valeur_brute}': {e}")
+        print(f"    -> ERROR during standardisation learning for '{valeur_brute}': {e}")
     finally:
         cursor.close()
 
@@ -56,7 +56,7 @@ def get_or_create_entity_id(conn, cache_dict, entity_value, table_name, column_n
     if cache_key in cache_dict: return cache_dict[cache_key]
     id_column_map = {'ecoles': 'id_ecole', 'annees_scolaires': 'id_annee', 'niveaux': 'id_niveau'}
     id_column_name = id_column_map.get(table_name)
-    if not id_column_name: raise ValueError(f"Clé primaire manquante pour la table '{table_name}'")
+    if not id_column_name: raise ValueError(f"Primary key missing for table '{table_name}'")
     cursor = conn.cursor()
     query_select = f"SELECT {id_column_name} FROM {table_name} WHERE {column_name} = %s"
     cursor.execute(query_select, (entity_value,))
@@ -88,7 +88,19 @@ def get_or_create_liste_id(conn, id_ecole, id_annee, id_niveau, source_file_id):
 def inserer_manuel(conn, manuel_data, id_niveau):
     cursor = conn.cursor()
     colonnes = ['titre', 'editeur', 'annee_edition', 'isbn', 'type', 'matiere', 'id_niveau', 'statut']
-    donnees = (manuel_data.get('titre_livre'), manuel_data.get('maison_edition'), manuel_data.get('annee_edition'), manuel_data.get('code_livre'), manuel_data.get('type_livre'), manuel_data.get('matiere'), id_niveau, 'À_VÉRIFIER')
+    # --- DÉBUT DE LA MODIFICATION : Correction de la clé pour la matière ---
+    # L'IA renvoie 'matiere_livre', il faut donc utiliser cette clé pour récupérer la valeur.
+    donnees = (
+        manuel_data.get('titre_livre'), 
+        manuel_data.get('maison_edition'), 
+        manuel_data.get('annee_edition'), 
+        manuel_data.get('code_livre'), 
+        manuel_data.get('type_livre'), 
+        manuel_data.get('matiere_livre'),  # Clé corrigée ici
+        id_niveau, 
+        'À_VÉRIFIER'
+    )
+    # --- FIN DE LA MODIFICATION ---
     placeholders = ', '.join(['%s'] * len(colonnes))
     query = f"INSERT INTO manuels ({', '.join(colonnes)}) VALUES ({placeholders})"
     cursor.execute(query, donnees)
@@ -124,15 +136,14 @@ def save_extraction_positions(conn, file_id, entity_map, position_mapping):
     try:
         cursor.executemany(query, locations_to_insert)
         conn.commit()
-        print(f"  -> {len(locations_to_insert)} positions sauvegardées.")
+        print(f"  -> {len(locations_to_insert)} positions saved.")
     except Exception as e:
-        print(f"    -> ERREUR lors de l'insertion des positions: {e}")
+        print(f"    -> ERROR during position insertion: {e}")
         conn.rollback()
     finally: cursor.close()
 
-# --- DÉBUT DE LA MODIFICATION ---
 def log_to_db(conn, file_id, file_name, mime_type, statut, message=""):
-    """Enregistre le résultat du traitement d'un fichier dans la table de logs, incluant le mime_type."""
+    """Logs the processing result of a file to the logs table, including the mime_type."""
     cursor = conn.cursor()
     query = """
         INSERT INTO logs_fichiers (id_fichier_drive, nom_fichier, mime_type, statut, error_message, date_traitement) 
@@ -146,4 +157,3 @@ def log_to_db(conn, file_id, file_name, mime_type, statut, message=""):
     cursor.execute(query, (file_id, file_name, mime_type, statut, message[:255]))
     conn.commit()
     cursor.close()
-# --- FIN DE LA MODIFICATION ---

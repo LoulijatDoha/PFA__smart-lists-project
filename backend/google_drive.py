@@ -44,7 +44,6 @@ def telecharger_fichier(service, file_id):
         print(f"   -> ERREUR lors du téléchargement du fichier {file_id}: {e}")
         return None
 
-# --- MODIFICATION (Problème #11) ---
 # Ajout d'une fonction récursive pour trouver les fichiers dans les sous-dossiers.
 def lister_fichiers_recursif(service, folder_id):
     """Liste tous les fichiers dans un dossier et ses sous-dossiers, de manière récursive."""
