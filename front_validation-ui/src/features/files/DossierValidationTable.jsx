@@ -3,12 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFilePdf, FaImage, FaChevronRight } from 'react-icons/fa';
 
-const DossierValidationTable = ({ dossiers, loading }) => {
+const DossierValidationTable = ({ dossiers, loading, fileQueue }) => {
   if (loading) return <div className="loading-state"><p>Chargement des fichiers...</p></div>;
   if (!dossiers || dossiers.length === 0) return <div className="empty-state"><p>Aucun fichier ne correspond à vos critères.</p></div>;
-
-  const fileIdsOnCurrentPage = dossiers.map(d => d.source_file_id).join(',');
-
+const fileIdsForNavigation = fileQueue.join(',');
   return (
     <table className="files-table">
       <thead>
@@ -43,7 +41,7 @@ const DossierValidationTable = ({ dossiers, loading }) => {
                 </div>
             </td>
             <td>
-              <Link to={`/validate/${dossier.source_file_id}?fileQueue=${fileIdsOnCurrentPage}`} className="action-button">
+              <Link to={`/validate/${dossier.source_file_id}?fileQueue=${fileIdsForNavigation}`} className="action-button">
                 Ouvrir
               </Link>
             </td>

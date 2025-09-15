@@ -240,3 +240,68 @@ def update_liste_et_manuels_niveau(list_id):
     finally:
         if db_conn and db_conn.is_connected():
             db_conn.close()
+
+
+@lists_bp.route('/dossiers/ids', methods=['GET'])
+@login_required
+def get_dossier_ids():
+    """
+    Récupère UNIQUEMENT la liste ordonnée des source_file_id
+    pour un ensemble de filtres donné. Essentiel pour la navigation "précédent/suivant".
+    """
+    try:
+        # --- Récupération des filtres (similaire à get_dossiers_a_valider) ---
+        statut_filter = request.args.get('statut')
+        ecole_filter = request.args.get('ecole')
+        annee_filter = request.args.get('annee')    
+        niveau_filter = request.args.get('niveau')
+        
+        where_clauses = []
+        params = []
+        
+        if ecole_filter:
+            where_clauses.append("e.nom_ecole LIKE %s")
+            params.append(f"%{ecole_filter}%")
+        if annee_filter:
+            where_clauses.append("a.annee_scolaire = %s")
+            params.append(annee_filter)
+        if niveau_filter:
+            where_clauses.append("ls.source_file_id IN (SELECT DISTINCT ls_inner.source_file_id FROM listes_scolaires ls_inner JOIN niveaux n_inner ON ls_inner.id_niveau = n_inner.id_niveau WHERE n_inner.nom_niveau = %s)")
+            params.append(niveau_filter)
+        
+        where_statement = " WHERE " + " AND ".join(where_clauses) if where_clauses else ""
+        
+        having_clause = ""
+        if statut_filter == 'A_VERIFIER':
+            having_clause = " HAVING SUM(CASE WHEN ls.statut = 'A_VERIFIER' THEN 1 ELSE 0 END) > 0"
+        elif statut_filter in ('VALIDE', 'VALIDÉ'):
+            having_clause = " HAVING SUM(CASE WHEN ls.statut = 'A_VERIFIER' THEN 1 ELSE 0 END) = 0"
+        
+        db_conn = database.get_connection()
+        cursor = db_conn.cursor() # Pas besoin de dictionary=True ici
+
+        # --- Requête principale pour récupérer les IDs ---
+        query = f"""
+            SELECT ls.source_file_id
+            FROM listes_scolaires ls
+            JOIN logs_fichiers lf ON ls.source_file_id = lf.id_fichier_drive
+            JOIN ecoles e ON ls.id_ecole = e.id_ecole
+            JOIN annees_scolaires a ON ls.id_annee = a.id_annee
+            {where_statement}
+            GROUP BY ls.source_file_id, lf.date_traitement
+            {having_clause}
+            ORDER BY lf.date_traitement DESC
+        """
+        
+        cursor.execute(query, tuple(params))
+        # On "aplatit" la liste de tuples en une simple liste de strings
+        file_ids = [item[0] for item in cursor.fetchall()]
+        
+        return jsonify(file_ids)
+        
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": "Erreur interne du serveur", "details": str(e)}), 500
+    finally:
+        if 'db_conn' in locals() and db_conn.is_connected():
+            db_conn.close()

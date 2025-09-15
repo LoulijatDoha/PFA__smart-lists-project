@@ -53,3 +53,13 @@ export const getListsByFile = (sourceFileId) => {
 export const updateListNiveau = (listId, newNiveauId) => {
   return apiClient.put(`/listes/${listId}/niveau`, { id_niveau: newNiveauId });
 };
+
+
+/**
+ * Récupère la liste complète des ID de dossiers filtrés pour la navigation.
+ * @param {object} filters - Un objet contenant les filtres (statut, ecole, etc.).
+ * @returns {Promise<string[]>} - Une promesse qui résout avec un tableau d'IDs.
+ */
+export const getDossierIds = (filters = {}) => {
+  return apiClient.get('/listes/dossiers/ids', { params: filters });
+};

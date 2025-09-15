@@ -24474,3 +24474,1872 @@ Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
 
 Connexion BDD fermée.
 --- FIN DU WORKFLOW ---
+Lancement du script le 14/09/2025 Ã  14:04:14,58... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 2 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+--- Processing file: ghosne azzaitoun Rabat.pdf (1_2wNovqeb25bdeuALJYn2sRjVnScUzI0) ---
+  -> Lancement de l'OCR pour ghosne azzaitoun Rabat.pdf...
+  -> OCR terminé avec succès.
+  -> Starting page-by-page analysis for 7 page(s)...
+    -> Analyzing page 1/7...
+    -> Launching AI analysis for page 1...
+  -> Retrieving knowledge bases...
+    -> WARNING: The knowledge base for 'ecoles' is empty.
+  -> Starting integrated extraction (levels and textbooks)...
+     -> No direct match for 'lycee olm'. Calling AI...
+     -> Gemini Pro could not deduce. Using raw value.
+  -> Processing found level: '1ère Année Collège'...
+     -> Cleaning grade level: '1ère Année Collège' -> '1ère Année Collège'
+     -> No direct match for '1ère année collège'. Calling AI...
+     -> Gemini Pro deduced: '1ère Année Collège'
+    -> Analyzing page 2/7...
+    -> Launching AI analysis for page 2...
+  -> Retrieving knowledge bases...
+    -> WARNING: The knowledge base for 'ecoles' is empty.
+  -> Starting integrated extraction (levels and textbooks)...
+     -> No direct match for 'lycee olm'. Calling AI...
+     -> Gemini Pro could not deduce. Using raw value.
+  -> Processing found level: '2ème Année Collège'...
+     -> Cleaning grade level: '2ème Année Collège' -> '2ème Année Collège'
+     -> No direct match for '2ème année collège'. Calling AI...
+     -> Gemini Pro deduced: '2ème Année Collège'
+    -> Analyzing page 3/7...
+    -> Launching AI analysis for page 3...
+  -> Retrieving knowledge bases...
+    -> WARNING: The knowledge base for 'ecoles' is empty.
+  -> Starting integrated extraction (levels and textbooks)...
+     -> No direct match for 'lycee olm'. Calling AI...
+     -> Gemini Pro could not deduce. Using raw value.
+  -> Processing found level: '3ère Année Collège'...
+     -> Cleaning grade level: '3ère Année Collège' -> '3ère Année Collège'
+     -> Direct match for '3ère année collège': '3ème Année Collège'
+    -> Analyzing page 4/7...
+    -> Launching AI analysis for page 4...
+  -> Retrieving knowledge bases...
+    -> WARNING: The knowledge base for 'ecoles' is empty.
+  -> Starting integrated extraction (levels and textbooks)...
+     -> No direct match for 'lycee olm'. Calling AI...
+     -> Gemini Pro could not deduce. Using raw value.
+  -> Processing found level: 'TRONC COMMUN'...
+     -> Cleaning grade level: 'TRONC COMMUN' -> 'TRONC COMMUN'
+     -> Direct match for 'tronc commun': 'Tronc Commun'
+    -> Analyzing page 5/7...
+    -> Launching AI analysis for page 5...
+  -> Retrieving knowledge bases...
+    -> WARNING: The knowledge base for 'ecoles' is empty.
+  -> Starting integrated extraction (levels and textbooks)...
+     -> No direct match for 'lycee olm'. Calling AI...
+     -> Gemini Pro could not deduce. Using raw value.
+  -> Processing found level: '1ère Année BAC Sciences Mathématiques'...
+     -> Cleaning grade level: '1ère Année BAC Sciences Mathématiques' -> '1ère Année BAC Sciences Mathématiques'
+     -> Direct match for '1ère année bac sciences mathématiques': '1ère Année Bac'
+    -> Analyzing page 6/7...
+    -> Launching AI analysis for page 6...
+  -> Retrieving knowledge bases...
+    -> WARNING: The knowledge base for 'ecoles' is empty.
+  -> Starting integrated extraction (levels and textbooks)...
+     -> No direct match for 'lycee olm'. Calling AI...
+     -> Gemini Pro could not deduce. Using raw value.
+  -> Processing found level: '1ère Année BAC Sciences Expérimentales'...
+     -> Cleaning grade level: '1ère Année BAC Sciences Expérimentales' -> '1ère Année BAC Sciences Expérimentales'
+     -> Direct match for '1ère année bac sciences expérimentales': '1ère Année Bac'
+  -> Processing found level: '1ère année Bac International Français Sciences Expérimentales'...
+     -> Cleaning grade level: '1ère année Bac International Français Sciences Expérimentales' -> '1ère année Bac International Français Sciences Expérimentales'
+     -> No direct match for '1ère année bac international français sciences expérimentales'. Calling AI...
+     -> Gemini Pro deduced: '1ère Année Bac'
+    -> Analyzing page 7/7...
+    -> Launching AI analysis for page 7...
+  -> Retrieving knowledge bases...
+    -> WARNING: The knowledge base for 'ecoles' is empty.
+  -> Starting integrated extraction (levels and textbooks)...
+     -> No direct match for 'lycee olm'. Calling AI...
+     -> Gemini Pro could not deduce. Using raw value.
+  -> Processing found level: '2ème Année BAC Sciences Physiques'...
+     -> Cleaning grade level: '2ème Année BAC Sciences Physiques' -> '2ème Année BAC Sciences Physiques'
+     -> Direct match for '2ème année bac sciences physiques': '2ème Année Bac'
+  -> Aggregation of all pages complete.
+  -> Inserting aggregated data into the database...
+  -> Saving positions from all pages...
+  -> 114 positions saved.
+  -> SUCCESS: 81 textbook(s) inserted from 7 pages.
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  14:14:14,55... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  14:24:14,56... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  15:16:56,30... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  15:24:14,55... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  15:34:14,57... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  15:44:14,59... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  15:54:14,58... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  18:58:07,87... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x00000225253C5940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000225253C5940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 187, in __call__
+    response = self.session.request(
+        method, url, data=body, headers=headers, timeout=timeout, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000225253C5940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 169, in <module>
+    main_orchestrator()
+    ~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 19, in main_orchestrator
+    drive_service = google_drive.get_drive_service()
+  File "E:\S8\PFA\smart-list-projet\backend\google_drive.py", line 19, in get_drive_service
+    creds.refresh(Request())
+    ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\credentials.py", line 409, in refresh
+    ) = reauth.refresh_grant(
+        ~~~~~~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<6 lines>...
+        enable_reauth_refresh=self._enable_reauth_refresh,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\reauth.py", line 333, in refresh_grant
+    response_status_ok, response_data, retryable_error = _client._token_endpoint_request_no_throw(
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        request, token_uri, body, headers=metrics_header
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\_client.py", line 192, in _token_endpoint_request_no_throw
+    response = request(
+        method="POST", url=token_uri, headers=headers_to_use, body=body, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 194, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000225253C5940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+Lancement du script le 14/09/2025 Ã  19:00:25,48... 
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 354, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'localhost:3306' (10061)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 24, in main_orchestrator
+    db_conn = database.get_connection()
+  File "E:\S8\PFA\smart-list-projet\backend\database.py", line 8, in get_connection
+    conn = mysql.connector.connect(**DB_CONFIG)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 142, in __init__
+    self.connect(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\abstracts.py", line 1604, in connect
+    self._open_connection()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 360, in _open_connection
+    raise get_mysql_exception(
+        err.errno, msg=err.msg, sqlstate=err.sqlstate
+    ) from err
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+DB connection error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+
+!!! FATAL ERROR IN ORCHESTRATOR: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061) !!!
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  19:04:14,64... 
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 354, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'localhost:3306' (10061)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 24, in main_orchestrator
+    db_conn = database.get_connection()
+  File "E:\S8\PFA\smart-list-projet\backend\database.py", line 8, in get_connection
+    conn = mysql.connector.connect(**DB_CONFIG)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 142, in __init__
+    self.connect(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\abstracts.py", line 1604, in connect
+    self._open_connection()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 360, in _open_connection
+    raise get_mysql_exception(
+        err.errno, msg=err.msg, sqlstate=err.sqlstate
+    ) from err
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+DB connection error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+
+!!! FATAL ERROR IN ORCHESTRATOR: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061) !!!
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  19:14:14,67... 
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 354, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'localhost:3306' (10061)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 24, in main_orchestrator
+    db_conn = database.get_connection()
+  File "E:\S8\PFA\smart-list-projet\backend\database.py", line 8, in get_connection
+    conn = mysql.connector.connect(**DB_CONFIG)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 142, in __init__
+    self.connect(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\abstracts.py", line 1604, in connect
+    self._open_connection()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 360, in _open_connection
+    raise get_mysql_exception(
+        err.errno, msg=err.msg, sqlstate=err.sqlstate
+    ) from err
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+DB connection error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+
+!!! FATAL ERROR IN ORCHESTRATOR: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061) !!!
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  19:24:14,65... 
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 354, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'localhost:3306' (10061)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 24, in main_orchestrator
+    db_conn = database.get_connection()
+  File "E:\S8\PFA\smart-list-projet\backend\database.py", line 8, in get_connection
+    conn = mysql.connector.connect(**DB_CONFIG)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 142, in __init__
+    self.connect(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\abstracts.py", line 1604, in connect
+    self._open_connection()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 360, in _open_connection
+    raise get_mysql_exception(
+        err.errno, msg=err.msg, sqlstate=err.sqlstate
+    ) from err
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+DB connection error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+
+!!! FATAL ERROR IN ORCHESTRATOR: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061) !!!
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  19:28:19,52... 
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 354, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'localhost:3306' (10061)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 24, in main_orchestrator
+    db_conn = database.get_connection()
+  File "E:\S8\PFA\smart-list-projet\backend\database.py", line 8, in get_connection
+    conn = mysql.connector.connect(**DB_CONFIG)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 142, in __init__
+    self.connect(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\abstracts.py", line 1604, in connect
+    self._open_connection()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\mysql\connector\connection_cext.py", line 360, in _open_connection
+    raise get_mysql_exception(
+        err.errno, msg=err.msg, sqlstate=err.sqlstate
+    ) from err
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+DB connection error: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+
+!!! FATAL ERROR IN ORCHESTRATOR: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061) !!!
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  19:34:14,57... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  19:44:14,69... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  19:54:14,71... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  20:04:14,59... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  20:14:14,68... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  20:24:14,58... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  20:34:14,63... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  20:44:14,66... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  20:54:14,61... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  21:04:14,68... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  21:14:14,64... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  22:12:47,57... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  22:14:14,64... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  22:24:14,56... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  22:34:14,56... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  22:44:14,59... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  22:54:14,55... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  23:04:14,56... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  23:14:14,56... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  23:24:14,57... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  23:34:14,87... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  23:44:14,58... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 14/09/2025 Ã  23:54:14,58... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã   3:02:42,22... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x000001E668C69940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001E668C69940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 187, in __call__
+    response = self.session.request(
+        method, url, data=body, headers=headers, timeout=timeout, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001E668C69940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 169, in <module>
+    main_orchestrator()
+    ~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 19, in main_orchestrator
+    drive_service = google_drive.get_drive_service()
+  File "E:\S8\PFA\smart-list-projet\backend\google_drive.py", line 19, in get_drive_service
+    creds.refresh(Request())
+    ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\credentials.py", line 409, in refresh
+    ) = reauth.refresh_grant(
+        ~~~~~~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<6 lines>...
+        enable_reauth_refresh=self._enable_reauth_refresh,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\reauth.py", line 333, in refresh_grant
+    response_status_ok, response_data, retryable_error = _client._token_endpoint_request_no_throw(
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        request, token_uri, body, headers=metrics_header
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\_client.py", line 192, in _token_endpoint_request_no_throw
+    response = request(
+        method="POST", url=token_uri, headers=headers_to_use, body=body, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 194, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001E668C69940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+Lancement du script le 15/09/2025 Ã  10:14:14,64... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x0000014CDBD59940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014CDBD59940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 187, in __call__
+    response = self.session.request(
+        method, url, data=body, headers=headers, timeout=timeout, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014CDBD59940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 169, in <module>
+    main_orchestrator()
+    ~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 19, in main_orchestrator
+    drive_service = google_drive.get_drive_service()
+  File "E:\S8\PFA\smart-list-projet\backend\google_drive.py", line 19, in get_drive_service
+    creds.refresh(Request())
+    ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\credentials.py", line 409, in refresh
+    ) = reauth.refresh_grant(
+        ~~~~~~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<6 lines>...
+        enable_reauth_refresh=self._enable_reauth_refresh,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\reauth.py", line 333, in refresh_grant
+    response_status_ok, response_data, retryable_error = _client._token_endpoint_request_no_throw(
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        request, token_uri, body, headers=metrics_header
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\_client.py", line 192, in _token_endpoint_request_no_throw
+    response = request(
+        method="POST", url=token_uri, headers=headers_to_use, body=body, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 194, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014CDBD59940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+Lancement du script le 15/09/2025 Ã  10:33:24,38... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x0000026F881F9940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000026F881F9940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 187, in __call__
+    response = self.session.request(
+        method, url, data=body, headers=headers, timeout=timeout, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000026F881F9940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 169, in <module>
+    main_orchestrator()
+    ~~~~~~~~~~~~~~~~~^^
+  File "E:\S8\PFA\smart-list-projet\backend\main.py", line 19, in main_orchestrator
+    drive_service = google_drive.get_drive_service()
+  File "E:\S8\PFA\smart-list-projet\backend\google_drive.py", line 19, in get_drive_service
+    creds.refresh(Request())
+    ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\credentials.py", line 409, in refresh
+    ) = reauth.refresh_grant(
+        ~~~~~~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<6 lines>...
+        enable_reauth_refresh=self._enable_reauth_refresh,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\reauth.py", line 333, in refresh_grant
+    response_status_ok, response_data, retryable_error = _client._token_endpoint_request_no_throw(
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        request, token_uri, body, headers=metrics_header
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\oauth2\_client.py", line 192, in _token_endpoint_request_no_throw
+    response = request(
+        method="POST", url=token_uri, headers=headers_to_use, body=body, **kwargs
+    )
+  File "E:\S8\PFA\smart-list-projet\backend\venv\Lib\site-packages\google\auth\transport\requests.py", line 194, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000026F881F9940>: Failed to resolve 'oauth2.googleapis.com' ([Errno 11001] getaddrinfo failed)"))
+Lancement du script le 15/09/2025 Ã  10:34:14,61... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  10:44:14,69... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  10:54:14,63... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  11:04:14,63... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  11:14:14,65... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  11:24:14,70... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  11:34:14,64... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  11:44:14,57... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  11:54:14,60... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  12:04:14,70... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  12:14:14,64... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  12:24:14,60... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  12:34:14,62... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  12:44:14,62... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  12:54:14,56... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  14:22:20,05... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  14:24:14,55... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  14:54:14,63... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  15:04:14,65... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  15:14:14,59... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  15:24:14,64... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  16:07:43,73... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  16:14:14,61... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
+Lancement du script le 15/09/2025 Ã  16:24:14,63... 
+--- STARTING WORKFLOW ---
+!!! PRODUCTION MODE ACTIVATED (Writing to DB) !!!
+
+[Step 1] Authentication and initialization...
+Authentification Google Drive réussie.
+Database connection successful.
+
+[Step 2] Retrieving and filtering files...
+Recherche de fichiers dans le dossier ID: 1gQiKMipCInsY7vTAn0Iv0_8QCTFosFBs...
+  -> Découverte du sous-dossier: HASSANIA
+Recherche de fichiers dans le dossier ID: 1fk3p2_U5-cOYiF68HopYNHiVlP3W4Guh...
+
+[Step 3] Starting processing for 1 new file(s)...
+
+--- Processing file: 5 AEP.docx (1OqoMQeVZwDGQNVxAGsuuDmP4hXD91nEQ) ---
+  -> Lancement de l'OCR pour 5 AEP.docx...
+   -> AVERTISSEMENT: Format de fichier non supporté par Document AI: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+DB connection closed.
+--- WORKFLOW FINISHED ---
