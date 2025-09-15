@@ -3,7 +3,6 @@ import React from 'react';
 
 const StatCards = ({ stats, loading }) => {
   if (loading || !stats) {
-    // Affiche 5 squelettes de chargement
     return [...Array(5)].map((_, i) => <div key={i} className="card loading-skeleton" />);
   }
 
@@ -11,7 +10,7 @@ const StatCards = ({ stats, loading }) => {
     <>
       <div className="card total">
         <h3>{stats.total_dossiers || 0}</h3>
-        <p>Fichiers Extraits au total</p>
+        <p>Fichiers Extraits</p>
       </div>
       
       <div className="card a-verifier">
@@ -31,7 +30,7 @@ const StatCards = ({ stats, loading }) => {
 
       <div className="card erreur">
         <h3>{stats.fichiers_en_erreur || 0}</h3>
-        <p>Fichiers en Erreur Système</p>
+        <p>Erreurs Système</p>
       </div>
     </>
   );

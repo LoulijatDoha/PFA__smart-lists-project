@@ -14,7 +14,7 @@
 
   /* Couleurs de fond et de surface */
   --color-background: #f8f9fa;     /* Gris très clair pour le fond général */
-  --color-surface: #ffffff;        /* Blanc pour les cartes, modales, etc. */
+  --color-surface: #fdfdff;       /* Blanc pour les cartes, modales, etc. */
 
   /* Couleurs de texte */
   --color-text-primary: #212529;   /* Noir doux pour le texte principal */

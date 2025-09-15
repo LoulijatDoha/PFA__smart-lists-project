@@ -5,6 +5,7 @@
   flex-direction: column;
   min-height: calc(100vh - 70px);
   background-color: #f4f7fa;
+   background-color: var(--color-background);
 }
 
 /* Barre de navigation supérieure (inchangée) */

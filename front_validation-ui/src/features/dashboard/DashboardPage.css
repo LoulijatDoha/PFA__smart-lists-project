@@ -2,150 +2,175 @@
 
 .dashboard-page {
   animation: fadeIn 0.5s ease-in-out;
+  /*position: relative;
+  z-index: 1;*/
 }
 
-/* --- Grille principale pour la mise en page --- */
+/* --- Image de fond subtile --- */
+/*.dashboard-page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('../../assets/books.png');
+  background-size: cover;
+  background-position: center;
+  /* On augmente un peu l'opacité pour que l'image soit plus présente */
+  /*opacity: 0.15;
+  z-index: -1;
+}*/
+
+/* --- Grille principale (inchangée, elle est déjà bien structurée) --- */
 .dashboard-grid {
   display: grid;
-  /* Grille de 3 colonnes égales pour les grands écrans */
-  grid-template-columns: repeat(3, 1fr); 
-  /* Définition des zones de la grille */
+  grid-template-columns: repeat(3, 1fr);
   grid-template-areas:
     "header header header"
     "kpi kpi kpi"
-    "actions errors errors"; /* Les actions prennent 2 colonnes, les erreurs 1 */
-  gap: 2rem; /* Espace entre les blocs */
+    "actions errors errors";
+  gap: 2rem;
 }
-
-/* --- Assignation des blocs aux zones de la grille --- */
 .dashboard-header { grid-area: header; }
 .stat-cards-container { grid-area: kpi; }
 .dashboard-actions-wrapper { grid-area: actions; }
 .dashboard-errors-wrapper { grid-area: errors; }
 
-/* En-tête de la page */
+/* --- AMÉLIORATION : En-tête de page intégré --- */
+.dashboard-header {
+  /* On retire le style "carte" pour l'intégrer à la page */
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  backdrop-filter: none; /* On retire l'effet de flou qui n'est plus nécessaire */
+}
 .dashboard-header h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
+  color: var(--color-text-primary);
 }
 .dashboard-header p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--color-text-secondary);
-  margin: 0;
 }
 
-/* Conteneur pour les cartes de statistiques (KPIs) */
+/* --- AMÉLIORATION : Cartes de statistiques (KPIs) --- */
 .stat-cards-container {
   display: grid;
-  /* Crée autant de colonnes que possible avec une largeur minimale de 180px */
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
 }
 
-/* Style individuel des cartes de statistiques */
 .card {
   background-color: var(--color-surface);
   padding: 1.5rem;
   border-radius: var(--border-radius);
+  /* On retire la bordure standard pour la remplacer par une bordure colorée en haut */
   border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-primary); /* Bordure par défaut */
   box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
 }
+
+/* On utilise la bordure colorée pour indiquer le statut, c'est plus moderne */
+.card.total { border-top-color: var(--color-text-primary); }
+.card.a-verifier { border-top-color: var(--color-warning); }
+.card.valide { border-top-color: var(--color-success); }
+.card.erreur { border-top-color: var(--color-danger); }
+
 .card h3 {
   font-size: 2.5rem;
-  margin: 0;
   font-weight: 700;
-  line-height: 1;
+  margin: 0.5rem 0;
+  /* On utilise la couleur du statut pour le chiffre, c'est plus direct */
+  color: var(--color-text-primary); /* Couleur par défaut */
 }
-.card p {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-/* Couleurs spécifiques pour les chiffres, comme demandé */
 .card.a-verifier h3 { color: var(--color-warning); }
 .card.valide h3 { color: var(--color-success); }
 .card.erreur h3 { color: var(--color-danger); }
-.card.total h3 { color: var(--color-text-primary); }
 
-/* Conteneur pour les liens d'action */
+.card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- AMÉLIORATION : Cartes d'action avec icônes --- */
 .dashboard-actions-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* Style des cartes d'action */
 .action-card {
   background-color: var(--color-surface);
   padding: 1.5rem;
   border-radius: var(--border-radius);
-  border-left: 5px solid var(--color-primary); /* Bordure colorée distinctive */
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
   text-decoration: none;
   color: inherit;
+  display: flex; /* Utilise flexbox pour aligner l'icône et le texte */
+  align-items: center;
+  gap: 1.5rem;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  box-shadow: var(--shadow-sm);
 }
 .action-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-left-color: var(--color-accent); /* Changement de couleur au survol */
+  border-color: var(--color-primary);
 }
-.action-card h2 {
-  font-size: 1.2rem;
-  margin: 0 0 0.5rem 0;
+.action-card-icon {
+  font-size: 1.8rem;
   color: var(--color-primary);
+  background-color: #eaf0eb;
+  padding: 0.8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.action-card p {
+.action-card-content h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: var(--color-text-primary);
+}
+.action-card-content p {
   margin: 0;
   font-size: 0.9rem;
   color: var(--color-text-secondary);
 }
 
-/* Conteneur pour la section des erreurs */
+/* --- AMÉLIORATION : Section des erreurs --- */
+/* On retire l'effet "boîte dans une boîte" */
 .dashboard-section {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   padding: 1.5rem;
   border-radius: var(--border-radius);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
-  height: 100%; /* S'assure que le bloc prend toute la hauteur de sa cellule de grille */
+  height: 100%;
 }
 .dashboard-section h2 {
-    margin-top: 0;
-    font-size: 1.2rem;
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* --- Responsive pour les tablettes et écrans plus petits --- */
+/* --- Responsive (inchangé) --- */
 @media (max-width: 992px) {
   .dashboard-grid {
-    /* Passe à une grille simple d'une colonne */
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "kpi"
-      "actions"
-      "errors";
+    grid-template-areas: "header" "kpi" "actions" "errors";
   }
 }
 
-/* --- Animation d'apparition --- */
+/* --- Animation (inchangée) --- */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
