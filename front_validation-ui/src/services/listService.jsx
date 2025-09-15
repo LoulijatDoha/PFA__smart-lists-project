@@ -65,3 +65,12 @@ export const getDossierIds = (filters = {}) => {
 };
 
 
+/**
+ * Ajoute un nouveau manuel à une liste scolaire spécifique.
+ * @param {number} listId - L'ID de la liste.
+ * @param {object} manuelData - Les données du nouveau manuel (titre, isbn, etc.).
+ * @returns {Promise}
+ */
+export const addManuelToList = (listId, manuelData) => {
+  return apiClient.post(`/listes/${listId}/manuels`, manuelData);
+};

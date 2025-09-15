@@ -307,3 +307,69 @@ def get_dossier_ids():
             db_conn.close()
 
 
+
+@lists_bp.route('/<int:id_liste>/manuels', methods=['POST'])
+@login_required
+def add_manuel_to_list(id_liste):
+    """
+    CORRIGÉ : Crée un nouveau manuel avec tous les champs possibles 
+    et l'associe à une liste scolaire existante.
+    """
+    data = request.get_json()
+    
+    # Le seul champ strictement requis est le titre
+    if not data or not data.get('titre'):
+        return jsonify({"error": "Le titre du manuel est un champ obligatoire."}), 400
+
+    db_conn = None
+    try:
+        db_conn = database.get_connection()
+        cursor = db_conn.cursor(dictionary=True)
+        
+        db_conn.start_transaction()
+
+        # Étape 1: Insérer le nouveau manuel dans la table 'manuels'
+        # La requête inclut maintenant TOUS les champs modifiables de votre table.
+        insert_manuel_query = """
+            INSERT INTO manuels (
+                titre, isbn, editeur, type, matiere, annee_edition, 
+                statut, id_niveau
+            )
+            VALUES (
+                %s, %s, %s, %s, %s, %s, 
+                'À_VÉRIFIER', (SELECT id_niveau FROM listes_scolaires WHERE id_liste = %s)
+            )
+        """
+        # On utilise .get(key, None) pour les champs optionnels.
+        # Si le champ n'est pas envoyé par le frontend, on insère NULL dans la BDD.
+        manuel_values = (
+            data.get('titre'),
+            data.get('isbn', None),
+            data.get('editeur', None),
+            data.get('type', None),
+            data.get('matiere', None),
+            data.get('annee_edition', None),
+            id_liste # Cet ID est utilisé pour la sous-requête qui trouve le id_niveau
+        )
+        cursor.execute(insert_manuel_query, manuel_values)
+        new_manuel_id = cursor.lastrowid
+
+        # Étape 2: Lier le nouveau manuel à la liste
+        insert_link_query = "INSERT INTO liste_manuels (id_liste, id_manuel) VALUES (%s, %s)"
+        cursor.execute(insert_link_query, (id_liste, new_manuel_id))
+        
+        db_conn.commit()
+
+        # Étape 3: Retourner l'objet complet du manuel nouvellement créé
+        cursor.execute("SELECT * FROM manuels WHERE id_manuel = %s", (new_manuel_id,))
+        new_manuel = cursor.fetchone()
+
+        return jsonify(new_manuel), 201
+
+    except Exception as e:
+        if db_conn: db_conn.rollback()
+        traceback.print_exc()
+        return jsonify({"error": "Erreur interne lors de l'ajout du manuel.", "details": str(e)}), 500
+    finally:
+        if db_conn and db_conn.is_connected():
+            db_conn.close()
