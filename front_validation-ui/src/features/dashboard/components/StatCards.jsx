@@ -1,32 +1,25 @@
 // src/features/dashboard/components/StatCards.jsx
 import React from 'react';
-import { useAuth } from '../../../context/AuthContext';
 
-const StatCards = ({ stats, loading, onCardClick }) => {
-  const { user } = useAuth();
-  const isAdmin = user?.role === 'admin';
-
+const StatCards = ({ stats, loading }) => {
   if (loading || !stats) {
-    return (
-      <div className="stat-cards-container">
-        {[...Array(4)].map((_, i) => <div key={i} className="card loading-skeleton" />)}
-      </div>
-    );
+    // Affiche 5 squelettes de chargement
+    return [...Array(5)].map((_, i) => <div key={i} className="card loading-skeleton" />);
   }
 
   return (
-    <div className="stat-cards-container">
-      <div className="card" onClick={() => onCardClick('')}>
+    <>
+      <div className="card total">
         <h3>{stats.total_dossiers || 0}</h3>
         <p>Fichiers Extraits au total</p>
       </div>
       
-      <div className="card a-verifier" onClick={() => onCardClick('A_VERIFIER')}>
+      <div className="card a-verifier">
         <h3>{stats.dossiers_a_verifier || 0}</h3>
         <p>Fichiers à Vérifier</p>
       </div>
       
-      <div className="card valide" onClick={() => onCardClick('VALIDE')}>
+      <div className="card valide">
         <h3>{stats.dossiers_valides || 0}</h3>
         <p>Fichiers Validés</p>
       </div>
@@ -36,13 +29,11 @@ const StatCards = ({ stats, loading, onCardClick }) => {
         <p>Manuels à Vérifier</p>
       </div>
 
-      {isAdmin && (
-        <div className="card erreur" onClick={() => onCardClick('erreurs')}>
-          <h3>{stats.fichiers_en_erreur || 0}</h3>
-          <p>Fichiers en Erreur Système</p>
-        </div>
-      )}
-    </div>
+      <div className="card erreur">
+        <h3>{stats.fichiers_en_erreur || 0}</h3>
+        <p>Fichiers en Erreur Système</p>
+      </div>
+    </>
   );
 };
 

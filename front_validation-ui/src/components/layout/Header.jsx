@@ -47,6 +47,9 @@ const Header = () => {
           <NavLink to="/files" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
             Fichiers
           </NavLink>
+          <NavLink to="/statistics" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+            Statistiques
+  </NavLink>
         </nav>
 
         {/* --- ZONE DROITE : Menu Utilisateur --- */}

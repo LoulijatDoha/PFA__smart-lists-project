@@ -20,7 +20,7 @@ import UserAdminPage from './features/users/UserAdminPage';
 import StandardisationAdminPage from './features/standardisation/StandardisationAdminPage'; // Renommé le dossier "pages" -> "features"
 import FilesPage from './features/files/FilesPage'; // Renommé le dossier "pages" -> "features"
 import ChangePasswordPage from './features/authentication/ChangePasswordPage'; // Nouvelle page
-
+import StatisticsPage from './features/statistics/StatisticsPage'; 
 // Autres
 import NotFoundPage from './components/shared/NotFoundPage';
 import { Toaster } from 'react-hot-toast';
@@ -51,6 +51,7 @@ const App = () => {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/files" element={<FilesPage />} />
+            <Route path="/statistics" element={<StatisticsPage />}/>
             <Route path="/validate/:sourceFileId" element={<ValidationPage />} />
           </Route>
         </Route>

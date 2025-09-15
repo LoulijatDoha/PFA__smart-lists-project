@@ -1,6 +1,5 @@
 // src/features/dashboard/components/ErrorFilesTable.jsx
 import React from 'react';
-// Assurez-vous que le chemin vers votre service est correct
 import { reprocessFile } from '../../../services/fileService'; 
 import './ErrorFilesTable.css'; 
 
@@ -30,36 +29,39 @@ const ErrorFilesTable = ({ files, loading, onReprocessSuccess }) => {
   }
 
   return (
-    <table className="lists-table error-table">
-      <thead>
-        <tr>
-          <th>Nom du Fichier</th>
-          <th>Type d'Erreur</th>
-          <th>Message</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {files.map((file) => (
-          <tr key={file.id_fichier_drive}>
-            <td>{file.nom_fichier}</td>
-            <td>
-                <span className={`status-badge status-${file.statut}`}>
-                    {file.statut.replace('ERREUR_', '')}
-                </span>
-            </td>
-            <td style={{ maxWidth: '400px', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
-                {file.error_message}
-            </td>
-            <td>
-              <button className="reprocess-button" onClick={() => handleReprocess(file.id_fichier_drive)}>
-                Retraiter
-              </button>
-            </td>
+    <div className="table-container">
+      <table className="error-table">
+        <thead>
+          <tr>
+            <th>Nom du Fichier</th>
+            <th>Type d'Erreur</th>
+            <th>Message</th>
+            <th>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {files.map((file) => (
+            <tr key={file.id_fichier_drive}>
+              <td className="file-name-cell">{file.nom_fichier}</td>
+              <td>
+                  <span className={`status-badge status-ERREUR_OCR`}>
+                      {file.statut.replace('ERREUR_', '')}
+                  </span>
+              </td>
+              {/* CORRECTION : Ajout de l'attribut `title` pour l'infobulle */}
+              <td className="error-message-cell" title={file.error_message}>
+                  {file.error_message}
+              </td>
+              <td>
+                <button className="reprocess-button" onClick={() => handleReprocess(file.id_fichier_drive)}>
+                  Retraiter
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

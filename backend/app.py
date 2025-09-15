@@ -63,6 +63,8 @@ from routes.entities import entities_bp as api_entities_bp
 from routes.referentiel import ref_bp 
 from routes.niveaux import niveaux_bp
 from routes.profile import profile_bp
+from routes.statistics import statistics_bp 
+
 
 app.register_blueprint(auth_bp, url_prefix='/api/v1')
 app.register_blueprint(users_bp, url_prefix='/api/v1/users')
@@ -78,7 +80,7 @@ app.register_blueprint(api_entities_bp, url_prefix='/api/v1/entities')
 app.register_blueprint(ref_bp, url_prefix='/api/v1/referentiel')
 app.register_blueprint(niveaux_bp, url_prefix='/api/v1/niveaux')
 app.register_blueprint(profile_bp, url_prefix='/api/v1/profile')
-
+app.register_blueprint(statistics_bp, url_prefix='/api/v1/statistics')
 
 
 
