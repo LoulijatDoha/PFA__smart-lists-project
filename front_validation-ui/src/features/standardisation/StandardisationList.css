@@ -160,6 +160,26 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+.bulk-buttons-wrapper {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.bulk-action-button.danger {
+  background-color: var(--color-danger);
+}
+.bulk-action-button.danger:hover {
+  background-color: #c82333;
+}
+
+/* Style pour le bouton de validation --- */
+.bulk-action-button.validate {
+  background-color: var(--color-success);
+}
+.bulk-action-button.validate:hover {
+  background-color: var(--color-accent-hover);
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .bulk-actions {
@@ -167,3 +187,4 @@ input[type="checkbox"] {
     gap: 1rem;
   }
 }
+

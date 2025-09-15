@@ -147,3 +147,38 @@ def bulk_delete_std_entries(std_type):
         return jsonify({"message": "Suppression groupée réussie."})
     finally:
         db_conn.close()
+
+
+@standardisation_bp.route('/<string:std_type>/bulk-validate', methods=['POST'])
+@login_required
+@admin_required
+def bulk_validate_std_entries(std_type):
+    if std_type not in CONFIG:
+        return jsonify({"error": f"Type '{std_type}' invalide."}), 404
+        
+    data = request.json
+    entry_ids = data.get('ids')
+    if not entry_ids or not isinstance(entry_ids, list):
+        return jsonify({"error": "Une liste d'IDs est requise."}), 400
+
+    table = CONFIG[std_type]['table']
+    pk = CONFIG[std_type]['pk']
+    
+    db_conn = None
+    try:
+        db_conn = database.get_connection()
+        cursor = db_conn.cursor()
+
+        placeholders = ', '.join(['%s'] * len(entry_ids))
+        query = f"UPDATE `{table}` SET statut = 'VALIDÉ' WHERE `{pk}` IN ({placeholders})"
+        
+        cursor.execute(query, tuple(entry_ids))
+        db_conn.commit()
+        
+        return jsonify({"message": f"{cursor.rowcount} règles ont été validées."})
+    except Exception as e:
+        if db_conn: db_conn.rollback()
+        return jsonify({"error": "Erreur lors de la validation groupée.", "details": str(e)}), 500
+    finally:
+        if db_conn and db_conn.is_connected():
+            db_conn.close()

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { deleteStandardisationEntry } from '../../services/standardisationService';
 import toast from 'react-hot-toast';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash,FaCheckCircle } from 'react-icons/fa';
 import './StandardisationList.css';
 
 const StandardisationList = ({ entries, loading, stdType, onAction }) => {
@@ -47,9 +47,14 @@ const StandardisationList = ({ entries, loading, stdType, onAction }) => {
       {selectedIds.length > 0 && (
         <div className="bulk-actions">
           <span>{selectedIds.length} sélectionné(s)</span>
-          <button className="bulk-action-button danger" onClick={() => onAction('delete-selected', selectedIds)}>
-            <FaTrash style={{marginRight: '0.5rem'}} /> Supprimer la sélection
-          </button>
+          <div className="bulk-buttons-wrapper">
+            <button className="bulk-action-button validate" onClick={() => onAction('validate-selected', selectedIds)}>
+              <FaCheckCircle style={{marginRight: '0.5rem'}} /> Valider la sélection
+            </button>
+            <button className="bulk-action-button danger" onClick={() => onAction('delete-selected', selectedIds)}>
+              <FaTrash style={{marginRight: '0.5rem'}} /> Supprimer la sélection
+            </button>
+          </div>
         </div>
       )}
 

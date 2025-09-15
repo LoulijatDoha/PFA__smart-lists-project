@@ -305,3 +305,5 @@ def get_dossier_ids():
     finally:
         if 'db_conn' in locals() and db_conn.is_connected():
             db_conn.close()
+
+

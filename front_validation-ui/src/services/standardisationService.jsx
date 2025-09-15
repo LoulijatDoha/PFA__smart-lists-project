@@ -44,3 +44,8 @@ export const deleteStandardisationEntry = (stdType, entryId) => {
 export const bulkDeleteStandardisationEntries = (stdType, entryIds) => {
   return apiClient.post(`/standardisation/${stdType}/bulk-delete`, { ids: entryIds });
 };
+
+
+export const bulkValidateStandardisationEntries = (stdType, entryIds) => {
+  return apiClient.post(`/standardisation/${stdType}/bulk-validate`, { ids: entryIds });
+};

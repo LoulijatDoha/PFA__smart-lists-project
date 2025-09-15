@@ -1,6 +1,6 @@
 // src/features/standardisation/StandardisationAdminPage.jsx
 import React, { useState, useEffect, useCallback } from 'react';
-import { getStandardisationEntries, bulkDeleteStandardisationEntries } from '../../services/standardisationService';
+import { getStandardisationEntries, bulkDeleteStandardisationEntries, bulkValidateStandardisationEntries } from '../../services/standardisationService';
 import StandardisationList from './StandardisationList';
 import StandardisationFormModal from './StandardisationFormModal';
 import Pagination from '../../components/shared/Pagination';
@@ -79,6 +79,18 @@ const StandardisationAdminPage = () => {
                     setCurrentPage(1);
                 } catch (error) { 
                   toast.error("Une erreur est survenue lors de la suppression groupée."); 
+                }
+            }
+            break;
+          case 'validate-selected':
+            if (window.confirm(`Voulez-vous vraiment marquer comme "VALIDÉ" les ${payload.length} règles sélectionnées ?`)) {
+                try {
+                    await bulkValidateStandardisationEntries(currentType, payload);
+                    toast.success("Les règles sélectionnées ont été validées.");
+                    fetchEntries(1); // Revenir à la première page
+                    setCurrentPage(1);
+                } catch (error) { 
+                  toast.error("Une erreur est survenue lors de la validation groupée."); 
                 }
             }
             break;

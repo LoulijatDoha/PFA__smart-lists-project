@@ -63,3 +63,5 @@ export const updateListNiveau = (listId, newNiveauId) => {
 export const getDossierIds = (filters = {}) => {
   return apiClient.get('/listes/dossiers/ids', { params: filters });
 };
+
+
